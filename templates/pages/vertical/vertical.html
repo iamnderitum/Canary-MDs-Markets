@@ -1,0 +1,82 @@
+{% load static %}
+<!doctype html>
+<html lang="en" >
+
+    <head>
+        
+        <meta charset="utf-8" />
+        <title>Vertical | Symox - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+        <!-- Bootstrap Css -->
+        <link href="{% static 'css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{% static 'css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body data-layout="vertical" data-sidebar="dark">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+           {% block header %}
+           {% include 'partials/header.html' %}
+           {% endblock header %}
+           {% block sidebar %}
+           {% include 'partials/sidebar.html' %}
+           {% endblock %}
+           
+            <!-- Left Sidebar End -->
+            {% comment %} {% block header %}
+            {% include 'partials/hori-header.html' %}
+            {% endblock %} {% endcomment %}
+            
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                {% block content %}
+                {% include 'partials/content.html' %}
+                {% endblock %}
+                {% block footer %}
+                {% include 'partials/footer.html' %}
+                {% endblock %}
+
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+        {% block rightsidebar %}
+        {% include 'partials/rightsidebar.html' %}          
+        {% endblock %}
+
+        <!-- JAVASCRIPT -->
+        <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'libs/metismenujs/dist/metismenujs.min.js' %}"></script>
+        <script src="{% static 'libs/simplebar/dist/simplebar.min.js' %}"></script>
+        <script src="{% static 'libs/feather-icons/dist/feather.min.js' %}"></script>
+
+        <!-- apexcharts -->
+        <script src="{% static 'libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+        <!-- Chart JS -->
+        <script src="{% static 'js/pages/chartjs.js' %}"></script>
+
+        <script src="{% static 'js/pages/dashboard.init.js' %}"></script>
+
+        <script src="{% static 'js/app.js' %}"></script>
+
+    </body>
+</html>
