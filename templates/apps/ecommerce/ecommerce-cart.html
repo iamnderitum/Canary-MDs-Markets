@@ -30,75 +30,95 @@
         <!-- end page title -->
         <div class="row">
             <div class="col-xl-8">
-                <div class="card border shadow-none">
-                    <div class="card-body">
 
-                        <div class="d-flex align-items-start border-bottom pb-3">
-                            <div class="me-4">
-                                <img src="{% static 'images/product/img-1.png' %}" alt="" class="avatar-lg">
-                            </div>
-                            <div class="flex-grow-1 align-self-center overflow-hidden">
-                                <div>
-                                    <h5 class="text-truncate font-size-16"><a href="ecommerce-product-detail.html" class="text-dark">Nike N012 Running Shoes</a></h5>
-                                    <p class="mb-1">Color : <span class="fw-medium">Gray</span></p>
-                                    <p>Size : <span class="fw-medium">08</span></p>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 ms-2">
-                                <ul class="list-inline mb-0 font-size-16">
-                                    <li class="list-inline-item">
-                                        <a href="#" class="text-muted px-1">
-                                            <i class="mdi mdi-trash-can-outline"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="#" class="text-muted px-1">
-                                            <i class="mdi mdi-heart-outline"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                {% for item in cart %}
+                {% with product=item.product %}
+                    <div class="card border shadow-none">
 
-                        <div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="mt-3">
-                                        <p class="text-muted mb-2">Price</p>
-                                        <h5 class="font-size-16">$260</h5>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="mt-3">
-                                        <p class="text-muted mb-2">Quantity</p>
-                                        <div class="d-inline-flex">
-                                            <select class="form-select form-select-sm w-lg">
-                                                <option value="1">1</option>
-                                                <option value="2"selected>2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                            </select>
+                        
+
+                                <div class="card-body">
+
+                                    <div class="d-flex align-items-start border-bottom pb-3">
+                                        <div class="me-4">
+                                            <img src="{% static 'images/product/img-1.png' %}" alt="" class="avatar-lg">
+                                        </div>
+                                        <div class="flex-grow-1 align-self-center overflow-hidden">
+                                            <div>
+                                                <h5 class="text-truncate font-size-16"><a href="ecommerce-product-detail.html" class="text-dark">{{ product.name }}</a></h5>
+                                                <p class="mb-1">Color : <span class="fw-medium">Gray</span></p>
+                                                <p>Size : <span class="fw-medium">08</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="flex-shrink-0 ms-2">
+                                            <ul class="list-inline mb-0 font-size-16">
+                                                <li class="list-inline-item">
+                                                    <form action="{% url "cart:cart_remove"  product.id %}" method="post" class="text-muted px-1">
+                                                        <input type="submit" value="Remove"  class="mdi mdi-trash-can-outline">
+                                                        {% csrf_token %}
+                                                    </form>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="#" class="text-muted px-1">
+                                                        <i class="mdi mdi-heart-outline"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="mt-3">
-                                        <p class="text-muted mb-2">Total</p>
-                                        <h5 class="font-size-16">$520</h5>
+
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="mt-3">
+                                                    <p class="text-muted mb-2">Quantity</p>
+                                                    <form action="{% url "cart:cart_add" product.id %}" method="post">
+                                                        {{ item.update_quantity_form.quantity }}
+                                                        {{ item.update_quantity_form.override }}
+                                                        <input type="submit" value="update">
+                                                        {% csrf_token %}
+
+                                                    </form>
+                                                    <!-- <div class="d-inline-flex">
+                                                        <select class="form-select form-select-sm w-lg">
+                                                            <option value="1">1</option>
+                                                            <option value="2"selected>2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                        </select>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-4">
+                                                <div class="mt-3">
+                                                    <p class="text-muted mb-2">Price</p>
+                                                    <h5 class="font-size-16">$ {{ item.price }}</h5>
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="col-md-4">
+                                                <div class="mt-3">
+                                                    <p class="text-muted mb-2">Total</p>
+                                                    <h5 class="font-size-16">$ {{ item.total_price }}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
-                            </div>
-                        </div>
+                        
 
                     </div>
-                </div>
+                {% endwith %}
+                {% endfor %}
                 <!-- end card -->
 
-                <div class="card border shadow-none">
+                <!-- <div class="card border shadow-none">
                     <div class="card-body">
 
                         <div class="d-flex align-items-start border-bottom pb-3">
@@ -163,10 +183,10 @@
                         </div>
 
                     </div>
-                </div>
+                </div> -->
                 <!-- end card -->
 
-                <div class="card border shadow-none">
+                <!-- <div class="card border shadow-none">
                     <div class="card-body">
 
                         <div class="d-flex align-items-start border-bottom pb-3">
@@ -231,7 +251,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> -->
                 <!-- end card -->
 
                 <div class="row my-4">
@@ -279,7 +299,7 @@
                                             <th>Total :</th>
                                             <td class="text-end">
                                                 <span class="fw-bold">
-                                                    $ 745.2
+                                                    $ {{ cart.get_total_price }}
                                                 </span>
                                             </td>
                                         </tr>

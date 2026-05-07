@@ -34,6 +34,7 @@ urlpatterns = [
     path('accounts/password/set/', login_required(MyPasswordSetView.as_view()), name="account_set_password"),
 
     path("shop/", include("shop.urls", namespace="shop")),
+    path('cart/', include('cart.urls', namespace='cart')),
 ]
 
 if settings.DEBUG:

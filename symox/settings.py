@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'components',
     'pages',
     'shop',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -216,3 +217,5 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+CART_SESSION_ID = "cart"
