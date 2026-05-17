@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
-
+from decouple import config
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
@@ -221,3 +221,9 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 CART_SESSION_ID = "cart"
+
+# Stripe
+STRIPE_PUBLISHABLE_KEY = config("STRIPE_PUBLISHABLE_KEY")
+STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY")
+STRIPE_API_VERSION = "2026-04-10"
+STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET")
