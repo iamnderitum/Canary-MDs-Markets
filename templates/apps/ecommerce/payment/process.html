@@ -1,58 +1,85 @@
 {% extends 'partials/base.html' %}
 {% load static %}
-
-{% block head_title %}
-    <title> Payment Process | Bishatheru</title>
+{% block head_title%}
+        <title>Starter Page | Symox - Minimal Admin & Dashboard Template</title>
 {% endblock %}
 
 {% block content %}
 
- <div class="row">
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Contextual classes</h4>
-                        <p class="card-title-desc">Use contextual classes to color table rows or individual cells.</p>  
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">Starter Page</h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Utility</a></li>
+                            <li class="breadcrumb-item active">Starter Page</li>
+                        </ol>
                     </div>
+
+                    
+                </div>
+            </div>
+
                     <div class="card-body">
-                        
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <!-- <th>#</th> -->
                                         <th>Image</th>
                                         <th>Product</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
                                         <th>Total</th>
-
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                   
-
-                                    <tr class="table-info">
-                                        <th scope="row">3</th>
-                                        <td>Column content</td>
-                                        <td>Column content</td>
-                                        <td>Column content</td>
-                                        <td>Column content</td>
-                                        <td>Column content</td>
+                                    {% for item in order.items.all %}
+                                        <tr class="row{% cycle "1" "2" %}">
+                                            <!-- <th scope="row">1</th> -->
+                                            <div class="flex-shrink-0 me-3">
+                                                <td>
+                                                    <img class="rounded avatar-md" src="{% if item.product.image %}{{ item.product.image.url}}
+                                                    {% else %}{% static "img/no_image.png" %}{% endif %}" >
+                                                </td>
+                                            </div>
+                                            <td> {{ item.product.name }}</td>
+                                            <td class="num"> ${{ item.price }} </td>
+                                            <td class="num"> {{ item.quantity }} </td>
+                                            <td class="num"> ${{item.get_cost }} </td>
                                         
-                                    </tr>
+                                        </tr>
+                                   {% endfor %}
+                                   <tr class="total">
+                                    <td colspan="4"> Total </td>
+                                    <td class="num"> ${{ order.get_total_cost }} </td>
 
-                                   
+                                   </tr>
                                 </tbody>
                             </table>
 
+                            <div class="card-body">
+                                <form  action="{% url "payment:process" %}" method="post">
+                                    <input class="btn btn-warning waves-effect waves-light" type="submit" value="Pay Now">
+                                    {% csrf_token %}
+
+                                </form>
+                            </div>
                         </div>
-
                     </div>
-                </div>
-            </div>
-            
-        </div>
 
+            </div>
+        </div>
+        <!-- end page title -->
+        
+    </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->
 {% endblock %}
