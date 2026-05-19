@@ -38,7 +38,7 @@ urlpatterns = [
     path('orders/', include('orders.urls', namespace='orders')),
     path("payment/", include("payment.urls", namespace="payment")),
     
-    path("blog", include("blog.url", namespace="blog")),
+    path("blog/", include("blog.urls", namespace="blog")),
 
 ]
 

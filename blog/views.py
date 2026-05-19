@@ -6,7 +6,7 @@ def post_list(request):
     posts = Post.published.all()
     return render (
         request,
-        "blog/post/list.html",
+        "apps/blog/post/list.html",
         {"posts": posts}
     )
 
@@ -22,6 +22,6 @@ def post_detail(request, id):
     )
     return render(
         request,
-        "blog/post/detail.html",
+        "apps/blog/post/detail.html",
         {"post": post}
     )
