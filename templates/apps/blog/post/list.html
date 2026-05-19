@@ -132,7 +132,8 @@
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">  
-                                                    <a href="{% url 'blog:post_detail' post.id %}">
+                                                    <!-- <a href="{% url 'blog:post_detail' post.id %}"> -->
+                                                    <a href="{{ post.get_absolute_url }}">
                                                         {{ post.title }}
                                                     </a>
                                                 </h5>
