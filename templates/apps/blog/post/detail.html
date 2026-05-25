@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load blog_tags %}
 
 {% block head_title%}
         <title>Blog | {{post.title}}</title>
@@ -18,7 +19,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0">Blog Detail</h4>
+                    <!-- <h4 class="mb-0">Blog Detail</h4> -->
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
@@ -33,7 +34,42 @@
         <!-- end page title -->
 
         <div class="row">
-            <div class="col-lg-12">
+
+             <div class="col-xl-3 col-lg-4">
+                <div class="card">
+                    <div class="card-header bg-transparent border-bottom">
+                        <h5 class="mb-0"> Latest posts</h5>
+                    </div>
+
+                    <div class="custom-accordion">
+                      
+                        {% show_latest_posts 5 %}
+                        
+                        <div class="p-4 border-top">
+                            <div>
+                                <h5 class="font-size-14 mb-0"><a href="#filterprodductcolor-collapse" class="text-dark d-block" data-bs-toggle="collapse">Most Commented Posts <i class="mdi mdi-chevron-up float-end accor-down-icon"></i></a></h5>
+
+                                <div class="collapse show" id="filterprodductcolor-collapse">
+                                    {% get_most_commented_posts as most_commented_posts %}
+                                    <div class="mt-4">
+                                       {% for post in most_commented_posts %}
+                                        <div class="form-check mt-2">
+                                            <input type="checkbox" class="form-check-input" id="productcolorCheck5">
+                                            <a href="{{ post.get_absolute_url}}"> {{ post.title }} </a>
+                                        </div>
+                                       {% endfor %}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-xl-9 col-lg-8">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
@@ -56,7 +92,7 @@
                         </div>
                         <!-- end row -->
 
-                        <div class="row">
+                      
                             <div class="col-8">
                                 <div class="mt-4 pt-3">
                                     <h5 class="font-size-14 mb-3">Comments : </h5>
@@ -128,10 +164,7 @@
                                 </div>
                             </div>
                             
-                        </div>
-                        <div class="row">
-
-                        </div>
+                        
                         <div class="col-4">
                                 <div class="mt-4 pt-3">
                                     <h5 class="font-size-14 mb-3">Similar Posts: </h5>
