@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
 
 from django.contrib import admin
 from django.urls import path,include
@@ -11,6 +12,12 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 #from . import MyPasswordChangeView
 from .views import MyPasswordChangeView ,MyPasswordSetView
+
+from blog.sitemaps import PostSitemap
+
+sitemaps = {
+    "posts": PostSitemap
+}
 
 
 urlpatterns = [
@@ -39,6 +46,12 @@ urlpatterns = [
     path("payment/", include("payment.urls", namespace="payment")),
     
     path("blog/", include("blog.urls", namespace="blog")),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap"
+    ),
 
 ]
 

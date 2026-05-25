@@ -14,6 +14,8 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 from decouple import config
 
+SITE_ID = 1
+
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    "django.contrib.sitemaps",
 
     'allauth',
     'allauth.account',
