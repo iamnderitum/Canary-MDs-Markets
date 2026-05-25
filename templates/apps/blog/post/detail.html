@@ -127,20 +127,23 @@
                                         </div>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            
+                        </div>
+                        <div class="row">
+
+                        </div>
+                        <div class="col-4">
                                 <div class="mt-4 pt-3">
-                                    <h5 class="font-size-14 mb-3">Product description: </h5>
+                                    <h5 class="font-size-14 mb-3">Similar Posts: </h5>
                                     <div class="product-desc">
                                         <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
-                                            <li class="nav-item">
-                                              <a class="nav-link" id="desc-tab" data-bs-toggle="tab" href="#desc" role="tab">Description</a>
-                                            </li>
+                                            
                                             <li class="nav-item">
                                               <a class="nav-link active" id="specifi-tab" data-bs-toggle="tab" href="#specifi" role="tab">Specifications</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content border border-top-0 p-4">
-                                            <div class="tab-pane fade" id="desc" role="tabpanel">
+                                            <!-- <div class="tab-pane fade" id="desc" role="tabpanel">
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div>
@@ -162,32 +165,22 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="tab-pane fade show active" id="specifi" role="tabpanel">
                                                 <div class="table-responsive">
                                                     <table class="table table-nowrap mb-0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row" style="width: 50%;"><b>Category :</b></th>
-                                                                <td>Shoes</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row"><b>Brand :</b></th>
-                                                                <td>Nike</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row"><b>Color :</b></th>
-                                                                <td>Gray</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row"><b>Quality :</b></th>
-                                                                <td>High</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row"><b>Material :</b></th>
-                                                                <td>Leather</td>
-                                                            </tr>
-                                                        </tbody>
+                                                         <div class="col-md-9">
+                                                        <div class="text-muted">
+                                                            {% for post in similar_posts %}
+                                                            <p>
+                                                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                                            </p>
+                                                            {% empty %}
+                                                            There are no similar posts yet
+                                                            {% endfor %}
+                                                            
+                                                        </div>
+                                                    </div>
                                                     </table>
                                                 </div>
                                             </div>
@@ -195,7 +188,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
