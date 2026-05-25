@@ -146,7 +146,7 @@
                                                     {% endfor %}
                                                 </p>
                                                 <p class="card-title-desc">
-                                                    {{ post.body|truncatewords:30|linebreaks }}
+                                                    {{ post.body|markdown|truncatewords_html:30|linebreaks }}
                                                 </p>
                                                 <p class="date">
 
