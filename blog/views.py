@@ -31,6 +31,7 @@ def post_list(request, tag_slug=None):
         request,
         "apps/blog/post/list.html",
         {
+            "page": posts,
             "posts": posts,
             "tag": tag
         }

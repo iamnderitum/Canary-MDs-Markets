@@ -11,7 +11,7 @@
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Symox</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Canary MDs</a></li>
                             <li class="breadcrumb-item active">Welcome !</li>
                         </ol>
                     </div>
@@ -39,11 +39,11 @@
                                 <li><i class="bx bx-polygon font-size-24"></i></li>
                             </ul>
                            <div class="main-wid position-relative">
-                                <h3 class="text-white">Symox Dashboard</h3>
+                                <h3 class="text-white">Canary MDs Dashboard</h3>
 
-                                <h3 class="text-white mb-0"> Welcome Back, Peter Kelsey!</h3>
+                                <h3 class="text-white mb-0"> Welcome Back, {{user.username}} !</h3>
 
-                                <p class="text-white-50 px-4 mt-4">Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien libero tincidunt.</p>
+                                <p class="text-white-50 px-4 mt-4">"The needs of the many outweighs the needs of the few."</p>
                                 
                                 <div class="mt-4 pt-2 mb-2">
                                     <a href="" class="btn btn-success">View Profile <i class="mdi mdi-arrow-right ms-1"></i></a>
@@ -431,11 +431,11 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Top Users</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Top Products</h4>
                                         <div class="flex-shrink-0">
                                             <div class="dropdown">
                                                 <a class=" dropdown-toggle" href="#" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="text-muted">All Members<i class="mdi mdi-chevron-down ms-1"></i></span>
+                                                    <span class="text-muted">Product Categories<i class="mdi mdi-chevron-down ms-1"></i></span>
                                                 </a>
                         
                                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
@@ -450,40 +450,26 @@
 
                                 <div class="card-body px-0 pt-2">
                                     <div class="table-responsive px-3" data-simplebar style="max-height: 393px;">
+                                        {% for product in products %}
                                         <table class="table table-borderless table-centered align-middle table-nowrap mb-0">
                                             <tbody>
                                                 <tr>
-                                                    <td style="width: 20px;"><img src="{% static 'images/users/avatar-4.jpg' %}" class="avatar-sm rounded-circle " alt="..."></td>
-                                                    <td>
-                                                        <h6 class="font-size-15 mb-1">Glenn Holden</h6>
-                                                        <p class="text-muted font-size-13 mb-0"><i class="mdi mdi-map-marker"></i> Nevada</p>
+                                                    <td style="width: 20px;">
+                                                        <img src="{% if product.image %}
+                                                        {{product.image.url}}" 
+                                                        {% else %}
+                                                        {% static 'images/img-1.jpg' %}
+                                                        {% endif %}
+                                                        
+                                                        class="avatar-sm rounded-circle " alt="Product">
                                                     </td>
-                                                    <td class="text-muted"><i class="icon-xs icon me-2 text-success" data-feather="trending-up"></i>$250.00</td>
-                                                    <td><span class="badge text-danger  bg-danger-subtle font-size-12">Cancel</span></td>
+
                                                     <td>
-                                                        <div class="dropdown">
-                                                            <a class="text-muted dropdown-toggle font-size-20" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                                <i class="mdi mdi-dots-vertical"></i>
-                                                            </a>
-                    
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="#">Action</a>
-                                                                <a class="dropdown-item" href="#">Another action</a>
-                                                                <a class="dropdown-item" href="#">Something else here</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="#">Separated link</a>
-                                                            </div>
-                                                        </div>
+                                                        <h6 class="font-size-15 mb-1"> {{product.name}} </h6>
+                                                        <p class="text-muted font-size-13 mb-0"><i class="mdi mdi-map-marker"></i> {{product.category}} </p>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src="{% static 'images/users/avatar-5.jpg' %}" class="avatar-sm rounded-circle " alt="..."></td>
-                                                    <td>
-                                                        <h6 class="font-size-15 mb-1">Lolita Hamill</h6>
-                                                        <p class="text-muted font-size-13 mb-0"><i class="mdi mdi-map-marker"></i> Texas</p>
-                                                    </td>
-                                                    <td class="text-muted"><i class="icon-xs icon me-2 text-danger" data-feather="trending-down"></i>$110.00</td>
-                                                    <td><span class="badge text-success  bg-success-subtle font-size-12">Success</span></td>
+                                                    <td class="text-muted"><i class="icon-xs icon me-2 text-success" data-feather="trending-up"></i>Ksh.{{product.price}}</td>
+                                                    <td><span class="badge text-danger  bg-danger-subtle font-size-12"> {{product.available}} </span></td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <a class="text-muted dropdown-toggle font-size-20" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
@@ -500,127 +486,11 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td><img src="{% static 'images/users/avatar-6.jpg' %}" class="avatar-sm rounded-circle " alt="..."></td>
-                                                    <td>
-                                                        <h6 class="font-size-15 mb-1">Robert Mercer</h6>
-                                                        <p class="text-muted font-size-13 mb-0"><i class="mdi mdi-map-marker"></i> California</p>
-                                                    </td>
-                                                    <td class="text-muted"><i class="icon-xs icon me-2 text-success" data-feather="trending-up"></i>$420.00</td>
-                                                    <td><span class="badge text-info bg-info-subtle font-size-12">Active</span></td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <a class="text-muted dropdown-toggle font-size-20" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                                <i class="mdi mdi-dots-vertical"></i>
-                                                            </a>
-                    
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="#">Action</a>
-                                                                <a class="dropdown-item" href="#">Another action</a>
-                                                                <a class="dropdown-item" href="#">Something else here</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="#">Separated link</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src="{% static 'images/users/avatar-7.jpg' %}" class="avatar-sm rounded-circle " alt="..."></td>
-                                                    <td>
-                                                        <h6 class="font-size-15 mb-1">Marie Kim</h6>
-                                                        <p class="text-muted font-size-13 mb-0"><i class="mdi mdi-map-marker"></i> Montana</p>
-                                                    </td>
-                                                    <td class="text-muted"><i class="icon-xs icon me-2 text-danger" data-feather="trending-down"></i>$120.00</td>
-                                                    <td><span class="badge text-warning  bg-warning-subtle font-size-12">Pending</span></td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <a class="text-muted dropdown-toggle font-size-20" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                                <i class="mdi mdi-dots-vertical"></i>
-                                                            </a>
-                    
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="#">Action</a>
-                                                                <a class="dropdown-item" href="#">Another action</a>
-                                                                <a class="dropdown-item" href="#">Something else here</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="#">Separated link</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src="{% static 'images/users/avatar-8.jpg' %}" class="avatar-sm rounded-circle " alt="..."></td>
-                                                    <td>
-                                                        <h6 class="font-size-15 mb-1">Sonya Henshaw</h6>
-                                                        <p class="text-muted font-size-13 mb-0"><i class="mdi mdi-map-marker"></i> Colorado</p>
-                                                    </td>
-                                                    <td class="text-muted"><i class="icon-xs icon me-2 text-success" data-feather="trending-up"></i>$112.00</td>
-                                                    <td><span class="badge text-info bg-info-subtle font-size-12">Active</span></td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <a class="text-muted dropdown-toggle font-size-20" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                                <i class="mdi mdi-dots-vertical"></i>
-                                                            </a>
-                    
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="#">Action</a>
-                                                                <a class="dropdown-item" href="#">Another action</a>
-                                                                <a class="dropdown-item" href="#">Something else here</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="#">Separated link</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src="{% static 'images/users/avatar-2.jpg' %}" class="avatar-sm rounded-circle " alt="..."></td>
-                                                    <td>
-                                                        <h6 class="font-size-15 mb-1">Marie Kim</h6>
-                                                        <p class="text-muted font-size-13 mb-0"><i class="mdi mdi-map-marker"></i> Australia</p>
-                                                    </td>
-                                                    <td class="text-muted"><i class="icon-xs icon me-2 text-danger" data-feather="trending-down"></i>$120.00</td>
-                                                    <td><span class="badge text-success  bg-success-subtle font-size-12">Success</span></td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <a class="text-muted dropdown-toggle font-size-20" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                                <i class="mdi mdi-dots-vertical"></i>
-                                                            </a>
-                    
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="#">Action</a>
-                                                                <a class="dropdown-item" href="#">Another action</a>
-                                                                <a class="dropdown-item" href="#">Something else here</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="#">Separated link</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src="{% static 'images/users/avatar-1.jpg' %}" class="avatar-sm rounded-circle " alt="..."></td>
-                                                    <td>
-                                                        <h6 class="font-size-15 mb-1">Sonya Henshaw</h6>
-                                                        <p class="text-muted font-size-13 mb-0"><i class="mdi mdi-map-marker"></i> India</p>
-                                                    </td>
-                                                    <td class="text-muted"><i class="icon-xs icon me-2 text-success" data-feather="trending-up"></i>$112.00</td>
-                                                    <td><span class="badge text-danger  bg-danger-subtle font-size-12">Cancel</span></td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <a class="text-muted dropdown-toggle font-size-20" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                                <i class="mdi mdi-dots-vertical"></i>
-                                                            </a>
-                    
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="#">Action</a>
-                                                                <a class="dropdown-item" href="#">Another action</a>
-                                                                <a class="dropdown-item" href="#">Something else here</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="#">Separated link</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                
+                                               
+                                                
                                             </tbody>
+                                            {% endfor %}
                                         </table>
                                     </div> <!-- enbd table-responsive-->
                                 </div>
@@ -838,7 +708,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex flex-wrap align-items-center">
-                            <h5 class="card-title mb-0">Manage Orders</h5>
+                            <h5 class="card-title mb-0">Blogs</h5>
                             <div class="ms-auto">
                                 <div class="dropdown">
                                     <a class="dropdown-toggle text-reset" href="#" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -858,77 +728,34 @@
                                 <thead >
                                     <tr>
                                         <th>No</th>
-                                        <th>Product's Name</th>
-                                        <th>Variant</th>
-                                        <th>Type</th>
-                                        <th>Stock</th>
-                                        <th>Price</th>
-                                        <th>Sales</th>
+                                        <th>Blog Title</th>
+                                        <th>Tags</th>
+                                        <th>Author</th>
+                                        <th>Pub Date</th>
                                         <th>Status</th>
+                                    
+                                        <th>State</th>
                                         <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1.</td>
-                                        <td><a href="javascript: void(0);" class="text-body">Iphone 12 Max Pro</a> </td>
-                                        <td>
-                                            <i class="mdi mdi-circle font-size-10 me-1 align-middle text-secondary"></i> Gray
-                                        </td>
-                                        <td>
-                                            Electronic
-                                        </td>
-                                        <td>
-                                           1,564 Items
-                                        </td>
-                                        <td>
-                                            $1200
-                                        </td>
-                                        <td>
-                                            900
-                                        </td>
-                                        
-                                        <td style="width: 130px;">
-                                            <div class="progress" style="height: 6px;">
-                                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="75">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="text-muted dropdown-toggle font-size-24" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                    <i class="mdi mdi-dots-vertical"></i>
-                                                </a>
-        
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">Action</a>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                    <a class="dropdown-item" href="#">Something else here</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Separated link</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-        
+                                   {% for blog in blogs %}
                                     <tr>
                                         <td>2.</td>
-                                        <td><a href="javascript: void(0);" class="text-body">New Red and White jacket </a> </td>
+                                        <td><a href="javascript: void(0);" class="text-body"> {{blog.title}} </a> </td>
                                         <td>
-                                            <i class="mdi mdi-circle font-size-10 me-1 align-middle text-danger"></i> Red
+                                            <i class="mdi mdi-circle font-size-10 me-1 align-middle text-danger"></i> {{blog.tags.name}}
                                         </td>
                                         <td>
-                                            Fashion
+                                            {{blog.author}}
                                         </td>
                                         <td>
-                                           568 Items
+                                          {{blog.pulish}}
                                         </td>
                                         <td>
-                                            $300
+                                            {{blog.status}}
                                         </td>
-                                        <td>
-                                            650
-                                        </td>
+                                      
                                         
                                         <td style="width: 130px;">
                                             <div class="progress" style="height: 6px;">
@@ -952,130 +779,9 @@
                                             </div>
                                         </td>
                                     </tr>
-        
-                                    <tr>
-                                        <td>3.</td>
-                                        <td><a href="javascript: void(0);" class="text-body">Latest Series Watch OS 8</a> </td>
-                                        <td>
-                                            <i class="mdi mdi-circle font-size-10 me-1 align-middle text-primary"></i> Dark
-                                        </td>
-                                        <td>
-                                            Electronic
-                                        </td>
-                                        <td>
-                                           1,232 Items
-                                        </td>
-                                        <td>
-                                            $250
-                                        </td>
-                                        <td>
-                                            350
-                                        </td>
-                                        
-                                        <td style="width: 130px;">
-                                            <div class="progress" style="height: 6px;">
-                                                <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="75">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="text-muted dropdown-toggle font-size-24" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                    <i class="mdi mdi-dots-vertical"></i>
-                                                </a>
-        
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">Action</a>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                    <a class="dropdown-item" href="#">Something else here</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Separated link</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4.</td>
-                                        <td><a href="javascript: void(0);" class="text-body">New Horror Book</a> </td>
-                                        <td>
-                                            <i class="mdi mdi-circle font-size-10 me-1 align-middle text-success"></i> Green
-                                        </td>
-                                        <td>
-                                            Book
-                                        </td>
-                                        <td>
-                                           1,564 Items
-                                        </td>
-                                        <td>
-                                            $1200
-                                        </td>
-                                        <td>
-                                            900
-                                        </td>
-                                        
-                                        <td style="width: 130px;">
-                                            <div class="progress" style="height: 6px;">
-                                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="75">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="text-muted dropdown-toggle font-size-24" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                    <i class="mdi mdi-dots-vertical"></i>
-                                                </a>
-        
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">Action</a>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                    <a class="dropdown-item" href="#">Something else here</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Separated link</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5.</td>
-                                        <td><a href="javascript: void(0);" class="text-body">Smart 4k Android TV</a> </td>
-                                        <td>
-                                            <i class="mdi mdi-circle font-size-10 me-1 align-middle text-primary"></i> Gray
-                                        </td>
-                                        <td>
-                                            Electronic
-                                        </td>
-                                        <td>
-                                           5,632 Items
-                                        </td>
-                                        <td>
-                                            $700
-                                        </td>
-                                        <td>
-                                            600
-                                        </td>
-                                        
-                                        <td style="width: 130px;">
-                                            <div class="progress" style="height: 6px;">
-                                                <div class="progress-bar progress-bar-striped bg-pricing" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="75">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="text-muted dropdown-toggle font-size-24" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                    <i class="mdi mdi-dots-vertical"></i>
-                                                </a>
-        
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">Action</a>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                    <a class="dropdown-item" href="#">Something else here</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Separated link</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    {% endfor %}
+                                    
+                                   
                                     
                                 </tbody>
                             </table>

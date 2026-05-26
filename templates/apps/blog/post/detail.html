@@ -3,12 +3,12 @@
 {% load blog_tags %}
 
 {% block head_title%}
-        <title>Blog | {{post.title}}</title>
+<title>Blog | {{post.title}}</title>
 {% endblock %}
 
 {% block extra_css %}
- <!-- swiper css -->
- <link rel="stylesheet" href="{% static 'libs/swiper/swiper-bundle.min.css' %}">
+<!-- swiper css -->
+<link rel="stylesheet" href="{% static 'libs/swiper/swiper-bundle.min.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
@@ -35,35 +35,37 @@
 
         <div class="row">
 
-             <div class="col-xl-3 col-lg-4">
-               
+            <div class="col-xl-3 col-lg-4">
+
                 <div class="card">
-                     <p>
+                    <p>
                         <a href="{% url "blog:post_feed" %}">
                             Subscribe to my RSS feed
                         </a>
-                     </p>
+                    </p>
                     <div class="card-header bg-transparent border-bottom">
                         <h5 class="mb-0"> Latest posts</h5>
                     </div>
 
                     <div class="custom-accordion">
-                      
+
                         {% show_latest_posts 5 %}
-                        
+
                         <div class="p-4 border-top">
                             <div>
-                                <h5 class="font-size-14 mb-0"><a href="#filterprodductcolor-collapse" class="text-dark d-block" data-bs-toggle="collapse">Most Commented Posts <i class="mdi mdi-chevron-up float-end accor-down-icon"></i></a></h5>
+                                <h5 class="font-size-14 mb-0"><a href="#filterprodductcolor-collapse"
+                                        class="text-dark d-block" data-bs-toggle="collapse">Most Commented Posts <i
+                                            class="mdi mdi-chevron-up float-end accor-down-icon"></i></a></h5>
 
                                 <div class="collapse show" id="filterprodductcolor-collapse">
                                     {% get_most_commented_posts as most_commented_posts %}
                                     <div class="mt-4">
-                                       {% for post in most_commented_posts %}
+                                        {% for post in most_commented_posts %}
                                         <div class="form-check mt-2">
                                             <input type="checkbox" class="form-check-input" id="productcolorCheck5">
                                             <a href="{{ post.get_absolute_url}}"> {{ post.title }} </a>
                                         </div>
-                                       {% endfor %}
+                                        {% endfor %}
                                     </div>
                                 </div>
 
@@ -79,17 +81,19 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                           
+
                             <div class="col-xl-12">
                                 <div class="mt-4 mt-xl-3 ps-xl-4">
                                     <h5 class="font-size-14"><a href="#" class="text-muted">{{ post.title }}</a></h5>
                                     <h4 class="font-size-20 mb-3">{{ post.title }} </h4>
 
                                     <div class="text-muted">
-                                        <span class="badge bg-success font-size-14 me-1"><i class="mdi mdi-star"></i> {{post.author}} </span> {{post.publish}}
+                                        <span class="badge bg-success font-size-14 me-1"><i class="mdi mdi-star"></i>
+                                            {{post.author}} </span> {{post.publish}}
                                     </div>
 
-                                    <h5 class="mt-4 pt-2"> <span class="text-danger font-size-14 ms-2">- Politica | Literature</span></h5>
+                                    <h5 class="mt-4 pt-2"> <span class="text-danger font-size-14 ms-2">- Politica |
+                                            Literature</span></h5>
 
                                     <p class="mt-4 text-muted">{{ post.body|markdown|linebreaks }}</p>
 
@@ -98,91 +102,104 @@
                         </div>
                         <!-- end row -->
 
-                      
-                            <div class="col-8">
-                                <div class="mt-4 pt-3">
-                                    <h5 class="font-size-14 mb-3">Comments : </h5>
 
-                                    {% with comments.count as total_comments %}
-                                    <div class="text-muted mb-3">
-                                        <span class="badge bg-success font-size-14 me-1"><i class="mdi mdi-star"></i> 4.2</span> {{total_comments}}
-                                    </div>
-                                    {% endwith %}
+                        <div class="col-8">
+                            <div class="mt-4 pt-3">
+                                <h5 class="font-size-14 mb-3">Comments : </h5>
 
-                                    <div class="border py-4 rounded">
+                                {% with comments.count as total_comments %}
+                                <div class="text-muted mb-3">
+                                    <span class="badge bg-success font-size-14 me-1"><i class="mdi mdi-star"></i>
+                                        4.2</span> {{total_comments}}
+                                </div>
+                                {% endwith %}
 
-                                        <div class="px-4" data-simplebar style="max-height: 260px;">
+                                <div class="border py-4 rounded">
 
-                                            {% for comment in comments %}
-                                            <div class="border-bottom pb-3">
-                                                <p class="float-sm-end text-muted font-size-13">{{comment.created}}</p>
-                                                <div class="badge bg-success mb-2"><i class="mdi mdi-star"></i> {{comment.name}} </div>
-                                                <p class="text-muted mb-4"> {{comment.body | linebreaks}} </p>
-                                                <div class="d-flex align-items-start">
-                                                    
+                                    <div class="px-4" data-simplebar style="max-height: 260px;">
 
-                                                    <div class="flex-shrink-0">
-                                                        <ul class="list-inline product-review-link mb-0">
-                                                            <li class="list-inline-item">
-                                                                <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Like"><i class="bx bx-like"></i></a>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <a href="#"  data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Comment"><i class="bx bx-comment-dots"></i></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                        {% for comment in comments %}
+                                        <div class="border-bottom pb-3">
+                                            <p class="float-sm-end text-muted font-size-13">{{comment.created}}</p>
+                                            <div class="badge bg-success mb-2"><i class="mdi mdi-star"></i>
+                                                {{comment.name}} </div>
+                                            <p class="text-muted mb-4"> {{comment.body | linebreaks}} </p>
+                                            <div class="d-flex align-items-start">
+
+
+                                                <div class="flex-shrink-0">
+                                                    <ul class="list-inline product-review-link mb-0">
+                                                        <li class="list-inline-item">
+                                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="" data-bs-original-title="Like"><i
+                                                                    class="bx bx-like"></i></a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="" data-bs-original-title="Comment"><i
+                                                                    class="bx bx-comment-dots"></i></a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-
-                                                {% empty %}
-                                                <p> There are no comments </p>
-                                                
                                             </div>
-                                            {% endfor %}
 
-                                        
+                                            {% empty %}
+                                            <p> There are no comments </p>
+
                                         </div>
+                                        {% endfor %}
 
-                                       
 
                                     </div>
-                                   <div class="px-4">
-                                            <div class="border rounded mt-4">
-                                                <form action="{% url "blog:post_comment" post.id %}" method="post">
-                                                    <div class="px-2 py-1 bg-light">
-                                                        <div class="btn-group" role="group">
-                                                            <button type="button" class="btn btn-sm btn-link text-dark text-decoration-none"><i class="bx bx-link"></i></button>
-                                                            <button type="button" class="btn btn-sm btn-link text-dark text-decoration-none"><i class="bx bx-smile"></i></button>
-                                                            <button type="button" class="btn btn-sm btn-link text-dark text-decoration-none"><i class="bx bx-at"></i></button>
-                                                        </div>
-                                                    </div>
 
-                                                    {{ form }}
-                                                    {% csrf_token %}
 
-                                                    <div class="text-end mt-3">
-                                                        <input type="submit" class="btn btn-success w-sm text-truncate ms-2"> 
-                                                    </div>
-                                                </form>
+
+                                </div>
+                                <div class="px-4">
+                                    <div class="border rounded mt-4">
+                                        <form action="{% url "blog:post_comment" post.id %}" method="post">
+                                            <div class="px-2 py-1 bg-light">
+                                                <div class="btn-group" role="group">
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-link text-dark text-decoration-none"><i
+                                                            class="bx bx-link"></i></button>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-link text-dark text-decoration-none"><i
+                                                            class="bx bx-smile"></i></button>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-link text-dark text-decoration-none"><i
+                                                            class="bx bx-at"></i></button>
+                                                </div>
                                             </div>
 
-                                            
-                                        </div>
+                                            {{ form }}
+                                            {% csrf_token %}
+
+                                            <div class="text-end mt-3">
+                                                <input type="submit" class="btn btn-success w-sm text-truncate ms-2">
+                                            </div>
+                                        </form>
+                                    </div>
+
+
                                 </div>
                             </div>
-                            
-                        
+                        </div>
+
+
                         <div class="col-4">
-                                <div class="mt-4 pt-3">
-                                    <h5 class="font-size-14 mb-3">Similar Posts: </h5>
-                                    <div class="product-desc">
-                                        <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
-                                            
-                                            <li class="nav-item">
-                                              <a class="nav-link active" id="specifi-tab" data-bs-toggle="tab" href="#specifi" role="tab">Specifications</a>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content border border-top-0 p-4">
-                                            <!-- <div class="tab-pane fade" id="desc" role="tabpanel">
+                            <div class="mt-4 pt-3">
+                                <h5 class="font-size-14 mb-3">Similar Posts: </h5>
+                                <div class="product-desc">
+                                    <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
+
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="specifi-tab" data-bs-toggle="tab"
+                                                href="#specifi" role="tab">Specifications</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content border border-top-0 p-4">
+                                        <!-- <div class="tab-pane fade" id="desc" role="tabpanel">
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div>
@@ -205,28 +222,30 @@
                                                     </div>
                                                 </div>
                                             </div> -->
-                                            <div class="tab-pane fade show active align-self-end" id="specifi" role="tabpanel">
-                                                <div class="table-responsive">
-                                                    <table class="table table-nowrap mb-0">
-                                                         <div class="col-md-9">
+                                        <div class="tab-pane fade show active align-self-end" id="specifi"
+                                            role="tabpanel">
+                                            <div class="table-responsive">
+                                                <table class="table table-nowrap mb-0">
+                                                    <div class="col-md-9">
                                                         <div class="text-muted">
                                                             {% for post in similar_posts %}
                                                             <p>
-                                                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                                                <a href="{{ post.get_absolute_url }}">{{ post.title
+                                                                    }}</a>
                                                             </p>
                                                             {% empty %}
                                                             There are no similar posts yet
                                                             {% endfor %}
-                                                            
+
                                                         </div>
                                                     </div>
-                                                    </table>
-                                                </div>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -241,8 +260,8 @@
 
 {% endblock %}
 {% block extra_javascript %}
-    <!-- swiper js -->
-    <script src="{% static 'libs/swiper/swiper-bundle.min.js' %}"></script>
+<!-- swiper js -->
+<script src="{% static 'libs/swiper/swiper-bundle.min.js' %}"></script>
 
-    <script src="{% static 'js/pages/ecommerce-product-detail.init.js' %}"></script>
+<script src="{% static 'js/pages/ecommerce-product-detail.init.js' %}"></script>
 {% endblock extra_javascript %}

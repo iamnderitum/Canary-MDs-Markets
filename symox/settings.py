@@ -14,7 +14,7 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 from decouple import config
 
-SITE_ID = 1
+SITE_ID = 3
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
