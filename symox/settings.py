@@ -14,7 +14,7 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 from decouple import config
 
-SITE_ID = 3
+SITE_ID = 1
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
@@ -112,8 +112,11 @@ WSGI_APPLICATION = 'symox.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config("DB_NAME"),
+        'USER': config("DB_USER"),
+        'PASSWORD': config("DB_PASSWORD"),
+        'HOST': config("DB_HOST"),
     }
 }
 
