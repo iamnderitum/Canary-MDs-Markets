@@ -54,17 +54,17 @@ def order_detail(obj):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = [
-        'id',
+        #'id',
         'first_name',
         'last_name',
         'email',
-        'address',
-        'postal_code',
+        #'address',
+        #'postal_code',
         'city',
         'paid',
         order_payment,
         'created',
-        'updated',
+        #'updated',
         order_detail,
 
     ]

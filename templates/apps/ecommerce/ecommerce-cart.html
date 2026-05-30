@@ -256,7 +256,7 @@
 
                 <div class="row my-4">
                     <div class="col-sm-6">
-                        <a href="ecommerce-products.html" class="btn btn-link text-muted">
+                        <a href="{% url 'shop:product_list' %}" class="btn btn-link text-muted">
                             <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
                     </div> <!-- end col -->
                     <div class="col-sm-6">
@@ -281,19 +281,19 @@
                                     <tbody>
                                         <tr>
                                             <td>Sub Total :</td>
-                                            <td class="text-end">$ 780</td>
+                                            <td class="text-end">$ {{ cart.get_total_price }} </td>
                                         </tr>
                                         <tr>
                                             <td>Discount : </td>
-                                            <td class="text-end">- $ 78</td>
+                                            <td class="text-end"> $ 0</td>
                                         </tr>
                                         <tr>
                                             <td>Shipping Charge :</td>
-                                            <td class="text-end">$ 25</td>
+                                            <td class="text-end">$ 0</td>
                                         </tr>
                                         <tr>
                                             <td>Estimated Tax : </td>
-                                            <td class="text-end">$ 18.20</td>
+                                            <td class="text-end">$ 0</td>
                                         </tr>
                                         <tr class="bg-light">
                                             <th>Total :</th>
