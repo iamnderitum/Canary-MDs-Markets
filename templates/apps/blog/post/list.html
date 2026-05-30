@@ -3,7 +3,7 @@
 {% load blog_tags %}
 
 {% block head_title%}
-        <title>Products | Symox - Admin & Dashboard Template</title>
+<title>Products | Symox - Admin & Dashboard Template</title>
 {% endblock %}
 {% block extra_css %}
 
@@ -33,188 +33,236 @@
         </div> -->
         <!-- end page title -->
 
-        <div class="row">
-            <div class="col-xl-3 col-lg-4">
-                <div class="card">
-                    <div class="card-header bg-transparent border-bottom">
-                        <h5 class="mb-0">Canary MD Blog</h5>
-                    </div>
-
-                    
-
-                    
-
-                    <div class="custom-accordion">
-                       
-
-                        <div class="p-4 border-top">
-                            <div>
-                                <h5 class="font-size-14 mb-0"><a href="#filterprodductcolor-collapse" class="text-dark d-block" data-bs-toggle="collapse">Colors <i class="mdi mdi-chevron-up float-end accor-down-icon"></i></a></h5>
-
-                                <div class="collapse show" id="filterprodductcolor-collapse">
-                                    <div class="mt-4">
-                                        <div class="form-check mt-2">
-                                            <input type="checkbox" class="form-check-input" id="productcolorCheck1">
-                                            <label class="form-check-label" for="productcolorCheck1"><i class="mdi mdi-circle text-dark mx-1"></i> Black</label>
-                                        </div>
-                                        <div class="form-check mt-2">
-                                            <input type="checkbox" class="form-check-input" id="productcolorCheck2">
-                                            <label class="form-check-label" for="productcolorCheck2"><i class="mdi mdi-circle text-light mx-1"></i> White</label>
-                                        </div>
-                                        <div class="form-check mt-2">
-                                            <input type="checkbox" class="form-check-input" id="productcolorCheck3">
-                                            <label class="form-check-label" for="productcolorCheck3"><i class="mdi mdi-circle text-secondary mx-1"></i> Gray</label>
-                                        </div>
-                                        <div class="form-check mt-2">
-                                            <input type="checkbox" class="form-check-input" id="productcolorCheck4">
-                                            <label class="form-check-label" for="productcolorCheck4"><i class="mdi mdi-circle text-primary mx-1"></i> Blue</label>
-                                        </div>
-                                       
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        
-                        <div class="p-4 border-top">
-                            <div>
-                                <h5 class="font-size-14 mb-0"><a href="#filterproduct-discount-collapse" class="collapsed text-dark d-block" data-bs-toggle="collapse">Discount <i class="mdi mdi-chevron-up float-end accor-down-icon"></i></a></h5>
-
-                                <div class="collapse" id="filterproduct-discount-collapse">
-                                    <div class="mt-4">
-                                        <div class="form-check mt-2">
-                                            <input type="radio" id="productdiscountRadio1" name="productdiscountRadio" class="form-check-input">
-                                            <label class="form-check-label" for="productdiscountRadio1">50% or more</label>
-                                        </div>
-                                        <div class="form-check mt-2">
-                                            <input type="radio" id="productdiscountRadio2" name="productdiscountRadio" class="form-check-input">
-                                            <label class="form-check-label" for="productdiscountRadio2">40% or more</label>
-                                        </div>
-                                        <div class="form-check mt-2">
-                                            <input type="radio" id="productdiscountRadio3" name="productdiscountRadio" class="form-check-input">
-                                            <label class="form-check-label" for="productdiscountRadio3">30% or more</label>
-                                        </div>
-                                        <div class="form-check mt-2">
-                                            <input type="radio" id="productdiscountRadio4" name="productdiscountRadio" class="form-check-input">
-                                            <label class="form-check-label" for="productdiscountRadio4">20% or more</label>
-                                        </div>
-                                        <div class="form-check mt-2">
-                                            <input type="radio" id="productdiscountRadio5" name="productdiscountRadio" class="form-check-input">
-                                            <label class="form-check-label" for="productdiscountRadio5">10% or more</label>
-                                        </div>
-                                        <div class="form-check mt-2">
-                                            <input type="radio" id="productdiscountRadio6" name="productdiscountRadio" class="form-check-input">
-                                            <label class="form-check-label" for="productdiscountRadio6">Less than 10%</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-             
-            <div class="col-xl-9 col-lg-8">
-               
-                <div class="card">
+        <div class="card-body">
+            <div>
+                <div class="row">
                    
-                    <div class="card-body">
-                         
-                        <div>
-                            {% for post in page.object_list %}
-                                
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title">  
-                                                    <a href="{{ post.get_absolute_url }}">
-                                                        {{ post.title }}
-                                                    </a>
-                                                </h5>
 
-                                                <p class="tags">
-                                                    {% for tag in post.tags.all %}
-                                                    <a href="{% url "blog:post_list_by_tag" tag.slug %}">
-                                                        {{ tag.name }}
-                                                    </a>{% if not forloop.last %}, {% endif %}
-                                                    {% endfor %}
-                                                </p>
-                                                <p class="card-title-desc">
-                                                    {{ post.body|markdown|truncatewords_html:30|linebreaks }}
-                                                </p>
-                                                <p class="date">
-
-                                                    <footer class="blockquote-footer"> Published {{ post.publish }} by <cite title="Source Title"> {{post.author}} </cite>
-                                                </p>
-                                            </div><!-- end card header -->
-
-                                           
-                                        </div><!-- end card -->
-                                    </div><!-- end col -->
-                                </div><!-- end row -->
-                        {% endfor%}
-
+                    <div class="col-md-6">
+                        <div class="form-inline float-md-end">
+                            <div class="search-box ms-2">
+                                <div class="position-relative">
+                                    <input type="text" class="form-control bg-light border-light rounded"
+                                        placeholder="Search...">
+                                    <i class="bx bx-search search-icon"></i>
+                                </div>
+                            </div>
                         </div>
-                        
                     </div>
-                    
                 </div>
-                <div class="row mt-4">
-                    <div class="col-sm-6">
-                        <div>
-                            <p class="mb-sm-0">5 Blogs of {% blog_count %} </p>
+
+            </div>
+        </div>
+                <div class="row">
+
+                    <div class="col-xl-3 col-lg-4">
+                        <div class="card">
+                            <div class="card-header bg-transparent border-bottom">
+                                <h5 class="mb-0">Canary MD Blog</h5>
+                            </div>
+
+
+
+
+
+                            <div class="custom-accordion">
+
+
+                                <div class="p-4 border-top">
+                                    <div>
+                                        <h5 class="font-size-14 mb-0"><a href="#filterprodductcolor-collapse"
+                                                class="text-dark d-block" data-bs-toggle="collapse">Colors <i
+                                                    class="mdi mdi-chevron-up float-end accor-down-icon"></i></a></h5>
+
+                                        <div class="collapse show" id="filterprodductcolor-collapse">
+                                            <div class="mt-4">
+                                                <div class="form-check mt-2">
+                                                    <input type="checkbox" class="form-check-input"
+                                                        id="productcolorCheck1">
+                                                    <label class="form-check-label" for="productcolorCheck1"><i
+                                                            class="mdi mdi-circle text-dark mx-1"></i> Black</label>
+                                                </div>
+                                                <div class="form-check mt-2">
+                                                    <input type="checkbox" class="form-check-input"
+                                                        id="productcolorCheck2">
+                                                    <label class="form-check-label" for="productcolorCheck2"><i
+                                                            class="mdi mdi-circle text-light mx-1"></i> White</label>
+                                                </div>
+                                                <div class="form-check mt-2">
+                                                    <input type="checkbox" class="form-check-input"
+                                                        id="productcolorCheck3">
+                                                    <label class="form-check-label" for="productcolorCheck3"><i
+                                                            class="mdi mdi-circle text-secondary mx-1"></i> Gray</label>
+                                                </div>
+                                                <div class="form-check mt-2">
+                                                    <input type="checkbox" class="form-check-input"
+                                                        id="productcolorCheck4">
+                                                    <label class="form-check-label" for="productcolorCheck4"><i
+                                                            class="mdi mdi-circle text-primary mx-1"></i> Blue</label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="p-4 border-top">
+                                    <div>
+                                        <h5 class="font-size-14 mb-0"><a href="#filterproduct-discount-collapse"
+                                                class="collapsed text-dark d-block" data-bs-toggle="collapse">Discount
+                                                <i class="mdi mdi-chevron-up float-end accor-down-icon"></i></a></h5>
+
+                                        <div class="collapse" id="filterproduct-discount-collapse">
+                                            <div class="mt-4">
+                                                <div class="form-check mt-2">
+                                                    <input type="radio" id="productdiscountRadio1"
+                                                        name="productdiscountRadio" class="form-check-input">
+                                                    <label class="form-check-label" for="productdiscountRadio1">50% or
+                                                        more</label>
+                                                </div>
+                                                <div class="form-check mt-2">
+                                                    <input type="radio" id="productdiscountRadio2"
+                                                        name="productdiscountRadio" class="form-check-input">
+                                                    <label class="form-check-label" for="productdiscountRadio2">40% or
+                                                        more</label>
+                                                </div>
+                                                <div class="form-check mt-2">
+                                                    <input type="radio" id="productdiscountRadio3"
+                                                        name="productdiscountRadio" class="form-check-input">
+                                                    <label class="form-check-label" for="productdiscountRadio3">30% or
+                                                        more</label>
+                                                </div>
+                                                <div class="form-check mt-2">
+                                                    <input type="radio" id="productdiscountRadio4"
+                                                        name="productdiscountRadio" class="form-check-input">
+                                                    <label class="form-check-label" for="productdiscountRadio4">20% or
+                                                        more</label>
+                                                </div>
+                                                <div class="form-check mt-2">
+                                                    <input type="radio" id="productdiscountRadio5"
+                                                        name="productdiscountRadio" class="form-check-input">
+                                                    <label class="form-check-label" for="productdiscountRadio5">10% or
+                                                        more</label>
+                                                </div>
+                                                <div class="form-check mt-2">
+                                                    <input type="radio" id="productdiscountRadio6"
+                                                        name="productdiscountRadio" class="form-check-input">
+                                                    <label class="form-check-label" for="productdiscountRadio6">Less
+                                                        than 10%</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
 
 
-                    <div class="col-sm-6">
-                        <div class="float-sm-end">
-                            <ul class="pagination pagination-rounded mb-sm-0">
-                                {% if page.has_previous %}
-                                <li class="page-item {% if not page.has_previous %} disabled {% endif %}">
-                                    <a href="?page={{ page.previous_page_number }}" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
-                                </li>
-                                {% endif %}
+                    <div class="col-xl-9 col-lg-8">
+
+                        <div class="card">
+
+                            <div class="card-body">
+
+                                <div>
+                                    {% for post in page.object_list %}
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h5 class="card-title">
+                                                        <a href="{{ post.get_absolute_url }}">
+                                                            {{ post.title }}
+                                                        </a>
+                                                    </h5>
+
+                                                    <p class="tags">
+                                                        {% for tag in post.tags.all %}
+                                                        <a href="{% url "blog:post_list_by_tag" tag.slug %}">
+                                                            {{ tag.name }}
+                                                        </a>{% if not forloop.last %}, {% endif %}
+                                                        {% endfor %}
+                                                    </p>
+                                                    <p class="card-title-desc">
+                                                        {{ post.body|markdown|truncatewords_html:30|linebreaks }}
+                                                    </p>
+                                                    <p class="date">
+
+                                                    <footer class="blockquote-footer"> Published {{ post.publish }} by
+                                                        <cite title="Source Title"> {{post.author}} </cite>
+                                                        </p>
+                                                </div><!-- end card header -->
 
 
-                                <li class="page-item active">
-                                    <a href="#" class="page-link">{{ page.number }}</a>
-                                </li>
+                                            </div><!-- end card -->
+                                        </div><!-- end col -->
+                                    </div><!-- end row -->
+                                    {% endfor%}
 
-                                {% if page.has_next %}
-                                <li class="page-item {% if not page.has_next %}disabled{% endif %}">
-                                    <a href="?page={{ page.next_page_number }}" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
-                                </li>
-                                {% endif %}
-                                
-                            </ul>
-                         </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-sm-6">
+                                <div>
+                                    <p class="mb-sm-0">5 Blogs of {% blog_count %} </p>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="float-sm-end">
+                                    <ul class="pagination pagination-rounded mb-sm-0">
+                                        {% if page.has_previous %}
+                                        <li class="page-item {% if not page.has_previous %} disabled {% endif %}">
+                                            <a href="?page={{ page.previous_page_number }}" class="page-link"><i
+                                                    class="mdi mdi-chevron-left"></i></a>
+                                        </li>
+                                        {% endif %}
+
+
+                                        <li class="page-item active">
+                                            <a href="#" class="page-link">{{ page.number }}</a>
+                                        </li>
+
+                                        {% if page.has_next %}
+                                        <li class="page-item {% if not page.has_next %}disabled{% endif %}">
+                                            <a href="?page={{ page.next_page_number }}" class="page-link"><i
+                                                    class="mdi mdi-chevron-right"></i></a>
+                                        </li>
+                                        {% endif %}
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
-                 </div>
-              
-                
-            </div>
-            
-            
-            
 
+
+
+
+                </div>
+
+            </div> <!-- container-fluid -->
         </div>
+        <!-- End Page-content -->
+        {% endblock %}
+        {% block extra_javascript %}
+        <!-- nouisliderribute js -->
+        <script src="{% static 'libs/nouislider/dist/nouislider.min.js' %}"></script>
+        <script src="{% static 'libs/wnumb/wNumb.min.js' %}"></script>
 
-    </div> <!-- container-fluid -->
-</div>
-<!-- End Page-content -->
-{% endblock %}
-{% block extra_javascript %}
-    <!-- nouisliderribute js -->
-    <script src="{% static 'libs/nouislider/dist/nouislider.min.js' %}"></script>
-    <script src="{% static 'libs/wnumb/wNumb.min.js' %}"></script>
-
-    <!-- init js -->
-    <script src="{% static 'js/pages/product-filter-range.init.js' %}"></script>
-{% endblock extra_javascript %}
+        <!-- init js -->
+        <script src="{% static 'js/pages/product-filter-range.init.js' %}"></script>
+        {% endblock extra_javascript %}
