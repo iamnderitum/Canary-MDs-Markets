@@ -1,7 +1,7 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 {% block head_title%}
-        <title>Starter Page | Symox - Minimal Admin & Dashboard Template</title>
+        <title>Payment Process | Canary MDs</title>
 {% endblock %}
 
 {% block content %}
@@ -13,12 +13,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0">Starter Page</h4>
+                    <h4 class="mb-0">Checkout Process</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Utility</a></li>
-                            <li class="breadcrumb-item active">Starter Page</li>
+                            <li class="breadcrumb-item active">Checkout Page</li>
                         </ol>
                     </div>
 
@@ -57,6 +57,26 @@
                                         
                                         </tr>
                                    {% endfor %}
+
+                                   {% if order.coupon %}
+                                    <tr class="subtotal">
+                                        <td>Subtotal</td>
+                                        <td colspan="3"></td>
+                                        <td class="num">
+                                        ${{ order.get_total_cost_before_discount|floatformat:2 }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        "{{ order.coupon.code }}" coupon
+                                        ({{ order.discount }}% off)
+                                        </td>
+                                        <td colspan="3"></td>
+                                        <td class="num neg">
+                                        - ${{ order.get_discount|floatformat:2 }}
+                                        </td>
+                                    </tr>
+                                    {% endif %}
                                    <tr class="total">
                                     <td colspan="4"> Total </td>
                                     <td class="num"> ${{ order.get_total_cost }} </td>
