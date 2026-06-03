@@ -2,11 +2,43 @@
 {% load static %}
 
 {% block head_title %}
-    <title> Payment Completed | Canary MDs</title>
+<title> Payment Completed | Canary MDs</title>
 {% endblock %}
 
 {% block content %}
 
-<h1> Your Payment was successul</h1>
-<p> Your Payment has been Processed successul</p>
+<h1> successul Payment</h1>
+<p>Payment successul</p>
+<div class="col-9 align-self-center">
+    <div class="grid-example mt-2 mt-sm-0">
+
+        <div class="card">
+
+
+            <div class="card-body">
+                <div class="alert alert-success alert-dismissible alert-label-icon label-arrow fade show" role="alert">
+                    <i class="mdi mdi-check-all label-icon"></i><strong>Payment Complete</strong> <br> Payment
+                    successully
+                    Received. Thank You!
+                    <a href="{% url "shop:product_list" %}" type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></a>
+                </div>
+
+                <div class="col-xl-4">
+
+                    <div class="d-flex flex-wrap gap-2">
+
+                        <a href="{% url "shop:product_list" %}" type="button"
+                            class="btn btn-primary waves-effect btn-label waves-light">
+                            <i class="bx bx-smile label-icon"></i>Keep Shopping
+                        </a>
+
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end card-body -->
+
+        </div><!-- end card -->
+
+    </div><!-- end col -->
+</div>
 {% endblock %}

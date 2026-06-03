@@ -2,12 +2,43 @@
 {% load static %}
 
 {% block head_title %}
-    <title> Payment Cancel | Canary MDs</title>
+<title> Payment Canceled | Canary MDs</title>
 {% endblock %}
 
 {% block content %}
 
-<h1>Your payment has not been processed</h1>
-<p>There was a problem processing your payment.</p>
+<h1> Cancel Payment</h1>
+<p>Payment Canceled</p>
+<div class="col-9 align-self-center">
+    <div class="grid-example mt-2 mt-sm-0">
 
+        <div class="card">
+
+
+            <div class="card-body">
+                <div class="alert alert-info alert-dismissible alert-label-icon label-arrow fade show" role="alert">
+                    <i class="mdi mdi-alert-circle-outline label-icon"></i><strong>Payment Canceled</strong> <br>
+                    Payment Canceled
+
+                    <a href="{% url "shop:product_list" %}" type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></a>
+                </div>
+
+                <div class="col-xl-4">
+
+                    <div class="d-flex flex-wrap gap-2">
+
+                        <a href="{% url "shop:product_list" %}" type="button"
+                            class="btn btn-warning waves-effect btn-label waves-light">
+                            <i class="bx bx-error label-icon"></i>Keep Shopping
+                        </a>
+
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end card-body -->
+
+        </div><!-- end card -->
+
+    </div><!-- end col -->
+</div>
 {% endblock %}
