@@ -171,25 +171,31 @@
                                        Apply A Coupon</h5>
 
                                     <div class="d-inline-flex">
-                                        <form action="{% url "coupons:apply" %}" method="post">
-                                            <div class="input-group mb-3">
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter Coupon Code ">
 
-                                                <button class="btn btn-light" type="button">Apply</button>
+                                        <form action="{% url "coupons:apply" %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="input-group mb-3">
+
+                                                {{coupon_apply_form.code}}
+
+                                                <button class="btn btn-light" type="submit">
+                                                    Apply
+                                                </button>
 
                                             </div>
                                         </form>
+
                                     </div>
 
                                 </div>
-                                <p>Apply a coupon:</p>
-                                <form action="{% url "coupons:apply" %}" method="post">
-                                    {{ coupon_apply_form }}
-                                    <input type="submit" value="apply">
-                                    {% csrf_token %}
-                                </form>
+                               
 
+                                <div class="col-sm-12">
+                                    <div class="text-sm-end mt-2 mt-sm-0">
+                                        <a href="{% url "orders:order_create" %}" class="btn btn-success">
+                                            <i class="mdi mdi-cart-outline me-1"></i> Continue to Payment </a>
+                                    </div>
+                                </div>
 
                             </div>
                             <!-- end table-responsive -->
