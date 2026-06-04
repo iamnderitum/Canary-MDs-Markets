@@ -47,16 +47,16 @@
                                     <div
                                         class="swiper product-thumbnail-slider rounded border overflow-hidden position-relative">
                                         <div class="swiper-wrapper">
-                                            <div class="swiper-slide"><img src="{% static 'images/product/img-1.png' %}"
+                                            <div class="swiper-slide"><img src="{{ product.image.url }}"
                                                     class="img-fluid d-block" /></div>
                                             <div class="swiper-slide"><img src="{% static 'images/product/img-2.png' %}"
                                                     class="img-fluid d-block" /></div>
-                                            <div class="swiper-slide"><img src="{% static 'images/product/img-3.png' %}"
+                                            <!-- <div class="swiper-slide"><img src="{% static 'images/product/img-3.png' %}"
                                                     class="img-fluid d-block" /></div>
                                             <div class="swiper-slide"><img src="{% static 'images/product/img-6.png' %}"
                                                     class="img-fluid d-block" /></div>
                                             <div class="swiper-slide"><img src="{% static 'images/product/img-5.png' %}"
-                                                    class="img-fluid d-block" /></div>
+                                                    class="img-fluid d-block" /></div> -->
                                         </div>
 
                                         <div class="d-none d-md-block">
@@ -70,7 +70,7 @@
                                             <div class="swiper-wrapper">
                                                 <div class="swiper-slide rounded">
                                                     <div class="nav-slide-item"><img
-                                                            src="{% static 'images/product/img-1.png' %}"
+                                                            src="{{ product.image.url }}"
                                                             class="img-fluid d-block" /></div>
                                                 </div>
                                                 <div class="swiper-slide">
@@ -78,7 +78,7 @@
                                                             src="{% static 'images/product/img-2.png' %}"
                                                             class="img-fluid d-block" /></div>
                                                 </div>
-                                                <div class="swiper-slide">
+                                                <!-- <div class="swiper-slide">
                                                     <div class="nav-slide-item"><img
                                                             src="{% static 'images/product/img-3.png' %}"
                                                             class="img-fluid d-block" /></div>
@@ -92,7 +92,7 @@
                                                     <div class="nav-slide-item"><img
                                                             src="{% static 'images/product/img-5.png' %}"
                                                             class="img-fluid d-block" /></div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </div>
