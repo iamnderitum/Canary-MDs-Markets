@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from .models import Category, Product
 from cart.forms import CartAddProductForm
 from .recommender import Recommender
@@ -12,6 +14,18 @@ def product_list(request, category_slug=None):
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
 
+    # Pagination with 6 products per page
+    paginatior = Paginator(products, 6)
+    page_number = request.GET.get("page", 1)
+    try:
+        products = paginatior.page(page_number)
+
+    except PageNotAnInteger:
+        products = paginatior.page(1)
+
+    except EmptyPage:
+        products = paginatior.page(paginatior.num_pages)
+
     return render(
         request,
         "apps/ecommerce/ecommerce-products.html",
@@ -19,6 +33,7 @@ def product_list(request, category_slug=None):
             'category': category,
             "categories": categories,
             "products": products,
+            "page": products,
         }
     )
 
