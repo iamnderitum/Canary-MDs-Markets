@@ -74,6 +74,8 @@ INSTALLED_APPS = [
     "coupons",
 
     "blog",
+
+    "market",
 ]
 
 MIDDLEWARE = [
@@ -243,3 +245,7 @@ STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET")
 REDIS_HOST = config("REDIS_HOST")
 REDIS_PORT = config("REDIS_PORT")
 REDIS_DB = config("REDIS_DB")
+
+# OANDA
+OANDA_API_KEY = config("OANDA_API_KEY")
+OANDA_ACCOUNT_ID = config("OANDA_ACCOUNT_ID")
