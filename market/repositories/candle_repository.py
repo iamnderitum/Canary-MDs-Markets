@@ -36,3 +36,10 @@ class CandleRepository:
         return Candle.objects.filter(
             pair=pair
         ).count()
+    
+    @staticmethod
+    def dataframe(pair, timeframe):
+        return Candle.objects.filter(
+            pair__name=pair,
+            timeframe=timeframe
+        ).order_by("timestamp")
