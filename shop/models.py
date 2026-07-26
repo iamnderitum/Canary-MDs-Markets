@@ -45,10 +45,10 @@ class Product(models.Model):
     )
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    is_available = models.BooleanField(default=True)
+    available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    available = models.CharField(
+    is_available = models.CharField(
         max_length=10,
         choices=Status,
         default=Status.NOT_AVAILABLE
@@ -72,11 +72,11 @@ class Product(models.Model):
         return reverse("shop:product_detail", args=[self.id, self.slug])
     
     
-    def get_absolute_url(self):
-        return reverse(
-            "product:prduct_detail",
-            args=[
-                self.name,
-                self.category.name
-            ]
-        )
+    # def get_absolute_url(self):
+    #     return reverse(
+    #         "product:prduct_detail",
+    #         args=[
+    #             self.name,
+    #             self.category.name
+    #         ]
+    #     )
