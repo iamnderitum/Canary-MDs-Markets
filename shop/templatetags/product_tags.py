@@ -12,4 +12,4 @@ def total_products():
     count = products.count()
     print("No of Products", count)
     # Add query by category
-    return Product.in_stock.count()
+    return Product.objects.filter(available=True).count()

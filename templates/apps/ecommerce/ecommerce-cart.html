@@ -246,7 +246,7 @@
                                                             <i class="mdi mdi-heart-outline"></i>
                                                         </a>
                                                     </div>
-                                                    <img src="{% if product.image %}
+                                                    <img src="{% if p.image %}
                                                         {{ p.image.url }} 
                                                         {% else %} {% static 'images/404-img.png' %}
                                                         {% endif %}" alt="" class="img-fluid mx-auto d-block">
@@ -262,7 +262,7 @@
                                                             <p class="text-muted font-size-13">Gray, Shoes</p>
                                                             <h5 class="mt-3 mb-0"><span
                                                                     class="text-muted me-2"><del>$280</del></span>
-                                                                ${{product.price}}</h5>
+                                                                ${{p.price}}</h5>
                                                         </div>
 
                                                         <div>
@@ -297,7 +297,7 @@
 
                             <div class="tab-pane" id="discount" role="tabpanel">
                                 <div class="row">
-                                    <div class="col-xl-4 col-sm-6">
+                                    <!-- <div class="col-xl-4 col-sm-6">
                                         <div class="product-box">
                                             <div class="product-ribbon">
                                                 - 20 %
@@ -343,7 +343,7 @@
 
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
                                 <!-- end row -->

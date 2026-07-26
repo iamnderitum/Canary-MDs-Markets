@@ -442,11 +442,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div>
-                                        <h5>Showing result for "Shoes"</h5>
-                                        <ol class="breadcrumb p-0 bg-transparent mb-2">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Footwear</a></li>
-                                            <li class="breadcrumb-item active">Shoes</li>
-                                        </ol>
+                                        <h2>People who bought this also bought</h2>
+                                       
                                     </div>
                                 </div>
 
@@ -458,6 +455,7 @@
                                 <div class="tab-pane active" id="popularity" role="tabpanel">
                                     <div class="row">
                                         {% if recommended_products %}
+                                        
                                         {% for p in recommended_products %}
 
                                         <div class="col-xl-4 col-sm-6">
@@ -512,6 +510,7 @@
                                             </div>
                                         </div>
                                         {% endfor %}
+                                       
                                         {% endif %}
 
                                     </div>
@@ -522,7 +521,7 @@
 
                             <div class="tab-pane" id="discount" role="tabpanel">
                                 <div class="row">
-                                    <div class="col-xl-4 col-sm-6">
+                                    <!-- <div class="col-xl-4 col-sm-6">
                                         <div class="product-box">
                                             <div class="product-ribbon">
                                                 - 20 %
@@ -568,7 +567,7 @@
 
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
                                 <!-- end row -->
