@@ -55,7 +55,7 @@ body:not([data-sidebar-size=sm]) .app-search {
 }
 
 .logo {
-  line-height: 70px;
+  line-height: 120px;
 }
 .logo .logo-sm {
   display: none;
