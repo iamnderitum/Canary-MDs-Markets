@@ -14,9 +14,11 @@ from django.urls import reverse_lazy
 from .views import MyPasswordChangeView ,MyPasswordSetView
 
 from blog.sitemaps import PostSitemap
+from shop.sitemaps import ProductSitemap
 
 sitemaps = {
-    "posts": PostSitemap
+    "posts": PostSitemap,
+    "products":ProductSitemap,
 }
 
 
