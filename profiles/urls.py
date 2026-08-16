@@ -1,12 +1,12 @@
 from django.urls import path
 from . import views
 
-app_name = "Profiles"
+app_name = "profiles"
 
 urlpatterns = [
     path(
         "edit/",
         views.profile_edit,
-        name="profile",
+        name="profile_edit",
     ),
 ]

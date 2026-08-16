@@ -22,7 +22,7 @@ def profile_edit(request):
 
         if form.is_valid():
             form.save()
-            return redirect("profile")
+            return redirect("profiles:profile_edit")
 
     else:
         form = ProfileForm(instance=profile)

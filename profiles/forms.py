@@ -41,12 +41,14 @@ class ProfileForm(forms.ModelForm):
             "dob": forms.DateInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "+254...",
+                    "type": "date"
+                    # "placeholder": "+254...",
                 }
             ),
             
             "phone": forms.TextInput(
                 attrs={
+                    "class": "form-control",
                     "placeholder":"+254..."
                 }
             ),

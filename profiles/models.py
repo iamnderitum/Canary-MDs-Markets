@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 
 class Profile(models.Model):
 
@@ -7,6 +8,7 @@ class Profile(models.Model):
         INFORMATICS = "INFORMATICS", "Informatics"
         ENGINEER = "ENGINEER", "Engineer"
         DOCTOR = "DOCTOR", "Doctor"
+        DESIGN = "DESIGN", "Design"
 
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
@@ -62,3 +64,6 @@ class Profile(models.Model):
     def __str__(self):
         #  return f"Profile for {self.user.username}" # self.user.username
         return self.user.get_username()
+
+    def get_absolute_url(self):
+        return reverse("profiles:profile_edit", args=[self.id,])
