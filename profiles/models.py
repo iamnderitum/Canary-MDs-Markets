@@ -16,3 +16,7 @@ class Profile(models.Model):
         max_length=20,
         blank=True
     )
+    bio = models.TextField(
+        blank=True,
+        null=True
+    )
