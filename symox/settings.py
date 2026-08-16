@@ -63,7 +63,8 @@ INSTALLED_APPS = [
 
     "taggit",
 
-    "accounts",
+    # "accounts",
+    "profiles",
 
     'apps',
     'bootstrap',

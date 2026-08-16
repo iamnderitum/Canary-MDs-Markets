@@ -5137,7 +5137,7 @@ body[data-layout=horizontal] .chat-conversation {
   color: #3980c0;
 }
 /* Hide sidebar on small screens */
-@media (max-width:767.98px) {
+@media (max-width:1100px) {
   .col-xl-3.col-lg-4{
     display: none;
   }
