@@ -42,7 +42,7 @@ urlpatterns = [
     path('accounts/password/change/', login_required(MyPasswordChangeView.as_view()), name="account_change_password"),
     path('accounts/password/set/', login_required(MyPasswordSetView.as_view()), name="account_set_password"),
 
-    path("profiles/", include("profiles.urls")),
+    path("profile/", include("profiles.urls")),
     path("shop/", include("shop.urls", namespace="shop")),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),

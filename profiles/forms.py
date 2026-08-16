@@ -17,6 +17,9 @@ class ProfileForm(forms.ModelForm):
                     "placeholder":"Tell us about You..."
                 }
             ),
+            # "city": forms.Textarea(
+            #     attrs=
+            # )
 
             "phone": forms.TextInput(
                 attrs={
