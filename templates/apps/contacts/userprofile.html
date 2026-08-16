@@ -85,28 +85,54 @@
                         <div class="tab-pane" id="update" role="tabpanel">
                             <div class="mt-4 mt-xl-0">
                                     <h5 class="font-size-14 mb-4"><i class="mdi mdi-arrow-right text-primary me-1"></i> Form groups</h5>
-                                    <form>
+                                    <form method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        
                                         <div class="mb-3">
-                                            <label class="form-label" for="formrow-bio-input">Bio</label>
-                                            <input type="text" class="form-control" placeholder="Short note about self" id="formrow-bio-input">
+                                            {{ form.bio.label_tag }}
+                                            {{ form.bio }}
+
+                                            {% if form.bio.errors %}
+                                                <div class="text-danger">
+                                                    {{ form.bio.errors }}
+                                                </div>
+                                            {% endif %}
                                         </div>
 
                                         <div class="mt-4">
-                                            <label for="formFile" class="form-label">Upload Profile Image</label>
-                                            <input class="form-control" type="file" id="formFile">
+                                           {{ form.image.label_tag }}
+                                           {{ form.image }}
+
+                                           {% if form.image.errors %}
+                                                <div class="text-danger">
+                                                    {{ form.image.errors }}
+                                                </div>
+                                            {% endif %}
                                         </div>
 
                                         <div class="row">                                                            
                                             <div class="col-md-6">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="formrow-city-input">City</label>
-                                                    <input type="text" class="form-control" placeholder="Enter City" id="formrow-city-input">
+                                                    {{ form.city.label_tag }}
+                                                    {{ form.city }}
+
+                                                    {% if form.city.errors %}
+                                                        <div class="text-danger">
+                                                            {{ form.city.errors }}
+                                                        </div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="formrow-address-input">Address</label>
-                                                    <input type="text" class="form-control" placeholder="Enter ADDRESS" id="formrow-address-input">
+                                                    {{ form.address.label_tag }}
+                                                    {{ form.address }}
+
+                                                    {% if form.address.errors %}
+                                                        <div class="text-danger">
+                                                            {{ form.address.errors }}
+                                                        </div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>
@@ -114,26 +140,39 @@
                                         <div class="row">                                                            
                                             <div class="col-md-6">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="formrow-dob-input">Date Of Birth</label>
-                                                    <input type="date" class="form-control" placeholder="Enter Date of Birth" id="formrow-dob-input">
+                                                    {{ form.dob.label_tag }}
+                                                    {{ form.dob }}
+
+                                                    {% if form.dob.errors %}
+                                                        <div class="text-danger">
+                                                            {{ form.dob.errors }}
+                                                        </div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="formrow-phone-input">Phone</label>
-                                                    <input type="tel" class="form-control" placeholder="Enter Phone Number" id="formrow-phone-input">
+                                                    {{ form.phone.label_tag }}
+                                                    {{ form.phone }}
+
+                                                    {% if form.phone.errors %}
+                                                        <div class="text-danger">
+                                                            {% form.phone.errors %}
+                                                        </div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label" for="formrow-profession-input">Profession</label>
-                                            <select name="profession" id="formrow-profession-input" class="form-select">
-                                                <option value="">Select</option>
-                                                <option value="">Informatics</option>
-                                                <option value="">Engineer</option>
-                                                <option value="">Doctor</option>
-                                            </select>
+                                            {{ form.profession.label_tag }}
+                                            {{ form.profession }}
+
+                                            {% if form.profession.errors %}
+                                                <div class="text-danger">
+                                                    {{ form.profession.errors }}
+                                                </div>
+                                            {% endif %}
                                         </div>
 
                                         <!-- <div class="form-check">
@@ -142,7 +181,9 @@
                                         </div> -->
                                         
                                         <div class="mt-4">
-                                            <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                            <button type="submit" class="btn btn-primary w-md">
+                                                Submit
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
