@@ -2,6 +2,12 @@ from django.conf import settings
 from django.db import models
 
 class Profile(models.Model):
+
+    class Profession(models.TextChoices):
+        INFORMATICS = "INFORMATICS", "Informatics"
+        ENGINEER = "ENGINEER", "Engineer"
+        DOCTOR = "DOCTOR", "Doctor"
+
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -22,12 +28,12 @@ class Profile(models.Model):
     )
     profession = models.CharField(
         max_length=30,
+        choices=Profession.choices,
         blank=True,
         null=True
     )
 
-    dob = models.CharField(
-        max_length=20,
+    dob = models.DateField(
         blank=True,
         null=True,
     )
