@@ -6,6 +6,13 @@ from .forms import ProfileForm
 # Create your views here.
 
 @login_required
+def profile(request):
+    return render(
+        request,
+        "apps/contacts/userprofile.html"
+    )
+
+@login_required
 def profile_edit(request):
     # profile, created = Profile.objects.get_or_create(
     #         user = request.user

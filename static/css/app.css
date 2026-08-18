@@ -399,7 +399,7 @@ body[data-bs-theme=dark][data-topbar=light] .noti-icon i {
   color: var(--bs-footer-color);
   left: 255px;
   height: 60px;
-  background-color: var(--bs-secondary-bg);
+   background-color: #90c695; /*var(--bs-secondary-bg) */
 }
 
 @media (max-width: 992px) {
@@ -410,6 +410,7 @@ body[data-bs-theme=dark][data-topbar=light] .noti-icon i {
 body[data-sidebar-size=sm] .footer {
   left: 70px;
 }
+
 
 body[data-layout=horizontal] .footer {
   left: 0 !important;
