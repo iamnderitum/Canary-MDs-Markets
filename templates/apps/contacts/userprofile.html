@@ -2,8 +2,10 @@
 {% load static %}
 
 {% block head_title%}
-        <title>User Profile | Symox - Admin & Dashboard Template</title>
+        <title>User Profile | CanaryMDs - Admin & Dashboard</title>
 {% endblock %}
+
+<link rel="stylesheet" href="{% static 'css/app.css' %}">
 
 {% block content %}
 
@@ -11,25 +13,66 @@
     <div class="container-fluid">
 
         <!-- start page title -->
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0">User Profile</h4>
+                   
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Contacts</a></li>
                             <li class="breadcrumb-item active">User Profile</li>
                         </ol>
                     </div>
 
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- end page title -->
 
         <div class="row mb-4">
-            <div class="col-xl-8">
+            <div class="col-xl-2">
+                <div class="card">
+                    <!-- <div class="card-header bg-transparent border-bottom">
+                        <h5 class="mb-0">Filters</h5>
+                    </div> -->
+
+                    <div class="p-4">
+                        <!-- <h5 class="font-size-14 mb-3">Categories</h5> -->
+                        <div class="custom-accordion">
+
+                            <ul class="list-unstyled categories-list ">
+                                <li class="selected">
+                                    <a href="" class="text-body">
+                                        <!-- <i class="mdi mdi-circle-medium me-1"></i> -->
+                                       Orders
+                                    </a>
+                                </li>
+                                 <li class="selected">
+                                    <a href="" class="text-body">
+                                        <!-- <i class="mdi mdi-circle-medium me-1"></i> -->
+                                        Wishlist
+                                    </a>
+                                </li>
+
+                                <!-- {% for c in categories %}
+                                <li {% if category.slug == c.slug %} class="selected" 
+                                {% endif %}>
+                                    <a href="{{ c.get_absolute_url }}" class="text-body">
+                                       
+                                        {{ c.name }}
+                                    </a>
+                                </li>
+                                {% endfor %} -->
+                           </ul>
+                           
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-xl-7">
                 <div class="card mb-0">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-tabs-custom nav-justified" role="tablist">
@@ -48,7 +91,7 @@
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#messages" role="tab">
                                 <i class="bx bx-mail-send font-size-20"></i>
-                                <span class="d-none d-sm-block">Messages</span>   
+                                <span class="d-none d-sm-block">Notifications</span>   
                             </a>
                         </li>
                     </ul>
@@ -246,7 +289,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4">
+
+            <div class="col-xl-3">
                 <div class="card overflow-hidden">
                     <div class="profile-user"></div>
                     <div class="card-body">
