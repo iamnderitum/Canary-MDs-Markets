@@ -79,6 +79,9 @@ INSTALLED_APPS = [
     "blog",
 
     "market",
+
+    "elearning",
+    "cms",
 ]
 
 MIDDLEWARE = [
