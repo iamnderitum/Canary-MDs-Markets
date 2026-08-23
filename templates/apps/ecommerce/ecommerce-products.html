@@ -237,12 +237,21 @@
 
                                 <div class="row mt-3">
                                     <div class="form-inline float-md-end">
-                                        <div class="search-box ms-2">
-                                            <div class="position-relative">
-                                                <input type="text" class="form-control bg-light border-light rounded" placeholder="Search...">
-                                                <i class="bx bx-search search-icon"></i>
+                                        <form method="GET" action="{% url 'shop:product_list' %}">
+                                            <div class="search-box ms-2">
+                                                <div class="position-relative">
+                                                    <input
+                                                        type="search"
+                                                        name="q"
+                                                        value="{{ query }}"
+                                                        class="form-control bg-light border-light rounded"
+                                                        placeholder="Search..."
+                                                        autocomplete="off"
+                                                    >
+                                                    <i class="bx bx-search search-icon"></i>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -314,6 +323,18 @@
                                                         </div>
                                                         
                                                     </div>
+                                                </div>
+                                            </div>
+
+                                            {% empty %}
+                                            <div class="col-12">
+                                                <div class="alert alert-warning">
+                                                    {% if query %}
+                                                        No Products found for
+                                                        "<strong> {{query}} </strong>"
+                                                    {% else %}
+                                                        No products available
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                             {% endfor %}
