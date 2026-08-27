@@ -1,0 +1,34 @@
+[
+{
+  "model": "elearning.subject",
+  "pk": 1,
+  "fields": {
+    "title": "Computer Operations",
+    "slug": "computer-operations"
+  }
+},
+{
+  "model": "elearning.subject",
+  "pk": 2,
+  "fields": {
+    "title": "Phone Repairs",
+    "slug": "phone-repairs"
+  }
+},
+{
+  "model": "elearning.subject",
+  "pk": 3,
+  "fields": {
+    "title": "Forex Learning",
+    "slug": "forex-learning"
+  }
+},
+{
+  "model": "elearning.subject",
+  "pk": 4,
+  "fields": {
+    "title": "Programming",
+    "slug": "programming"
+  }
+}
+]
