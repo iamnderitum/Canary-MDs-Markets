@@ -104,11 +104,11 @@
 
                 <!-- Right Sidebar -->
                 <div class="email-rightbar mb-3">
-
+                    {% for course in object_list %}
                     <div class="col-xl-6 col-sm-6">
-
+                        
                         <div class="card">
-                            {% for course in object_list %}
+                            
                             <div class="card-body">
 
                                 <div class="d-flex align-items-center">
@@ -185,26 +185,27 @@
                                 </div>
 
                             </div>
-                            {% endfor %}
+                            
                         </div>
-                        <!-- end card -->
-                        <div class="card-body">
-                            <div class="d-grid gap-2">
-                                <a href="{% url "course_create" %}"
-                                    class="btn btn-primary btn-lg waves-effect waves-light">Create New Course</a>
-                            </div>
-                        </div>
+                       
                     </div>
+                    {% endfor %}
 
-
+                    
                 </div>
 
-
-                <!-- card -->
+                
 
             </div>
+            
             <!-- end Col-9 -->
 
+        </div>
+        <div class="card-body">
+            <div class="d-grid gap-2">
+                <a href="{% url "course_create" %}"
+                    class="btn btn-primary btn-lg waves-effect waves-light">Create New Course</a>
+            </div>
         </div>
         <!-- end row -->
 
