@@ -1,0 +1,106 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block head_title%}
+<title>Contents Page | CanaryMDs</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">Module "{{ module.order|add:1 }}: {{module.title}}" </h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Utility</a></li>
+                            <li class="breadcrumb-item active">Contents Page</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            {% with course=module.course %}
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Media Object</h4>
+                        <p class="card-title-desc">The images or other media can be
+                            aligned top, middle, or bottom. The default is top aligned.
+                        </p>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="d-flex align-items-center">
+
+                            <div class="flex-shrink-0 me-3 col-sm-4">
+                                <div class="contents">
+                                    <h3>Modules</h3>
+                                    <ul id="modules">
+                                        {% for m in course.modules.all %}
+                                            <li data-id="{{ m.id }}" {% if m == module %}
+                                            class="selected"{% endif %}>
+                                            <a href="{% url "courses:module_content_list" m.id %}>
+                                                <span>
+                                                    Module <span class="order">{{ m.order|add:1}}</span>
+                                                </span>
+                                                <br>
+                                                {{ m.title }}
+                                            </a>
+
+                                            </li>
+                                        {% empty %}
+                                            <li> No modules yet.</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <div class="flex-grow-1 col-sm-8">
+                                <h2>Module {{ module.order|add:1 }}: {{module.title}} </h2>
+                                <h3>Module Contents</h3>
+                                <div id="module-contents">
+                                    {% for content in module.contents.all %}
+                                        <div data-id="{{ coentent.id }}">
+                                            {% with item=content.item %}
+                                                <p class="mb-0"> {{ item }} </p>
+                                                <a href="">Edit</a>
+                                                <form action="{% url "courses:module_content_delete" content.id %}" method="post">
+                                                    <input type="submit" value="Delete">
+                                                    {% csrf_token %}
+                                                    
+                                                </form>
+                                            {% endwith %}
+
+                                        </div>
+                                    {% empty %}
+                                     <p> This module has no content yet</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div><!-- end card-body -->
+                </div><!-- end card -->
+            </div><!-- end col -->
+        </div><!-- end row -->
+        {% endwith %}
+
+    </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->
+{% endblock %}
