@@ -19,8 +19,8 @@ services:
   web:
     build: .
     command: ["./wait-for-it.sh", "db:5432", "--",
-      "python", "/code/symox/manage.py", "runserver",
-      0.0.0.0:8000
+      "uwsgi", "--ini", "/code/config/uwsgi/uwsgi.ini",
+      
       ]
 
     restart: always
@@ -38,3 +38,14 @@ services:
 
     depends_on:
       - db
+      - cache
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./config/nginx:/etc/nginx/templates
+      - .:/code
+
+    ports:
+      - "80:80"
