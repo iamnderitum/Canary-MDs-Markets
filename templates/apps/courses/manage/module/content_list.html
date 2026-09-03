@@ -43,7 +43,7 @@
 
                         <div class="d-flex align-items-center">
 
-                            <div class="flex-shrink-0 me-3 col-sm-4">
+                            <div class="flex-shrink-0 me-3 col-sm-4" style="background-color: chartreuse;">
                                 <div class="contents">
                                     <h3>Modules</h3>
                                     <ul id="modules">
@@ -87,6 +87,27 @@
                                     {% empty %}
                                      <p> This module has no content yet</p>
                                     {% endfor %}
+                                </div>
+                                <h5>Add New Content</h5>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="{% url "courses:module_content_create" module.id "text" %}" class="btn btn-primary waves-effect waves-light">
+                                        <i class="bx bx-smile font-size-16 align-middle me-2"></i>
+                                        Text
+                                    </a>
+                                    <a href="{% url "courses:module_content_create" module.id "image" %}" class="btn btn-success waves-effect waves-light">
+                                        <i class="bx bx-check-double font-size-16 align-middle me-2"></i>
+                                        Image
+                                    </a>
+                                    <a href="{% url "courses:module_content_create" module.id "video" %}" class="btn btn-warning waves-effect waves-light">
+                                        <i class="bx bx-error font-size-16 align-middle me-2"></i>
+                                        Video
+                                    </a>
+                                    <a href="{% url "courses:module_content_create" module.id "file" %}" class="btn btn-danger waves-effect waves-light">
+                                        <i class="bx bx-block font-size-16 align-middle me-2"></i>
+                                        File
+                                    </a>
+                                  
+                                   
                                 </div>
                             </div>
                         </div>
