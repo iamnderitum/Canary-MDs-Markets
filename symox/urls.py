@@ -60,7 +60,9 @@ urlpatterns = [
     ),
 
     # Elearning Courses urls
-    path("course/", include("elearning.urls"))
+    path("course/", include("elearning.urls")),
+    path("chat/", include("chat.urls", namespace="chat"))
+
 
 ]
 

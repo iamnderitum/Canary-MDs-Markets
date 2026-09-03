@@ -10,6 +10,7 @@ from django.contrib.auth.mixins import (
 )
 from django import forms
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.base import TemplateResponseMixin, View
 from django.apps import apps
@@ -203,3 +204,7 @@ class ModuleContentListView(TemplateResponseMixin, View):
         return self.render_to_response(
             {"module":module}
         )
+
+class CourseDetailView(DetailView):
+    model = Course
+    template_name = "apps/courses/detail.html"

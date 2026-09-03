@@ -14,4 +14,9 @@ urlpatterns = [
         views.profile_edit,
         name="profile_edit",
     ),
+    path(
+        "enroll-course/",
+        views.StudentEnrollCourseView.as_view(),
+        name="student_enroll_course"
+    )
 ]

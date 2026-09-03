@@ -1,6 +1,6 @@
 from django import forms
 from .models import Profile
-
+from elearning.models import Course
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
@@ -69,3 +69,13 @@ class ProfileForm(forms.ModelForm):
             "phone": "Phone",
             "profession": "Profession"
         }
+
+class CourseEnrollForm(forms.Form):
+    course = forms.ModelChoiceField(
+        queryset=Course.objects.none(),
+        widget=forms.HiddenInput
+    )
+
+    def __init__(self, form):
+        super(CourseEnrollForm, self).__init__(*args, **kwargs)
+        self.fields["course"].queryset = Course.objects.all()

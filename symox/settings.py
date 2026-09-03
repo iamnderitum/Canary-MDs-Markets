@@ -43,6 +43,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,6 +83,7 @@ INSTALLED_APPS = [
 
     "elearning",
     "cms",
+    "chat",
 ]
 
 MIDDLEWARE = [
@@ -115,7 +117,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'symox.wsgi.application'
 
-
+ASGI_APPLICATION = "symox.asgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
