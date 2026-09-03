@@ -15,6 +15,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.base import TemplateResponseMixin, View
 from django.apps import apps
 from django.forms.models import modelform_factory
+from braces.views import CsrfExemptMixin, JSONRequestResponseMixin
 
 from .forms import ModuleFormSet
 from .models import Course, Module, Content
@@ -204,6 +205,24 @@ class ModuleContentListView(TemplateResponseMixin, View):
         return self.render_to_response(
             {"module":module}
         )
+
+class ModuleOrderView(CsrfExemptMixin, JSONRequestResponseMixin, View):
+    def post(self, request):
+        for id, order in self.request_json.items():
+            Module.objects.filter(
+                id=id, course__owner=request.user
+            ).update(order=order)
+
+        return self.render_json_response({"saved": "OK"})
+
+
+class ContentOrderView(CsrfExemptMixin, JSONRequestResponseMixin, View):
+    def post(self, request):
+        for id, order in self.request_json.items():
+            Content.objects.filter(
+                id=id, module__course__owner=request.user
+            ).update(order=order)
+        return self.render_json_response({"saved": "OK"})
 
 class CourseDetailView(DetailView):
     model = Course
