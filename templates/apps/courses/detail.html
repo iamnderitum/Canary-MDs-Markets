@@ -34,8 +34,21 @@
                 <div class="card">
                     <h5 class="card-header bg-transparent border-bottom text-uppercase">Featured</h5>
                     <div class="card-body">
-                        <h4 class="card-title">{{course.title}} </h4>
-                        <p class="card-text">{{ course.overview }}.</p>
+                        {% with subject=object.subject %}
+                        <h1 class="card-title">{{object.title}} </h1>
+
+                        <div class="module">
+                            <h2>Overview</h2>
+                            <p class="card-text">
+                                <a href="{% url "courses:course_list_subject" subject.slug %}">
+                                    {{ subject.title }} 
+                                </a>
+                                {{ object.modules.count }} modules.
+                                Instructor: {{ object.owner.username }}
+                            </p>
+                            {{ object.overview|linebreaks }}
+                        </div>
+                        {% endwith %}
 
                         {% if request.user.is_authenticated %}
                             <form action="{% url "profiles:student_enroll_course" %}" method="post">
@@ -47,6 +60,7 @@
 
                             <a href="{% url "dashboard" %}" class="btn btn-primary">Register to enrol</a>
                         {% endif %}
+                        
                     </div>
                 </div>
             </div><!-- end col -->
