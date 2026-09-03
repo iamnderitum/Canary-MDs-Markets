@@ -20,7 +20,7 @@ from braces.views import CsrfExemptMixin, JSONRequestResponseMixin
 
 from .forms import ModuleFormSet
 from .models import Course, Module, Content,Subject
-
+from profiles.forms import CourseEnrollForm
 
 # class ManageCourseListView(ListView):
 #     model = Course
@@ -250,3 +250,10 @@ class CourseListView(TemplateResponseMixin, View):
 class CourseDetailView(DetailView):
     model = Course
     template_name = "apps/courses/detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["enroll_form"] = CourseEnrollForm(
+            {"course":self.object}
+        )
+        return context
