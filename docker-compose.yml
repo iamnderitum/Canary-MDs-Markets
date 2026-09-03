@@ -1,0 +1,40 @@
+services:
+
+  db:
+    image: postgres:latest
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+
+    environment:
+      - POSTGRES_DB=canary
+      - POSTGRES_USER=canary
+      - POSTGRES_PASSWORD=canary
+
+  cache:
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./data/cache:/data
+  web:
+    build: .
+    command: ["./wait-for-it.sh", "db:5432", "--",
+      "python", "/code/symox/manage.py", "runserver",
+      0.0.0.0:8000
+      ]
+
+    restart: always
+    volumes:
+      - ./code
+
+    ports:
+      - "8000"
+
+    environment:
+      - DJANGO_SETTINGS_MODULE=symox.settings.prod
+      - DB_NAME=canary
+      - DB_USER=canary
+      - DB_PASSWORD=canary
+
+    depends_on:
+      - db
