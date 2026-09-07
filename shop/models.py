@@ -20,6 +20,7 @@ class Category(models.Model):
         ]
         verbose_name = "category"
         verbose_name_plural = "categories"
+        app_label = "category"
 
     def __str__(self):
         return self.name
@@ -64,6 +65,10 @@ class Product(models.Model):
             models.Index(fields=["name"]),
             models.Index(fields=["-created"]),
         ]
+
+        verbose_name = "Product"
+        verbose_name_plural = "Products"
+        app_label = "Products"
 
     def __str__(self):
         return self.name

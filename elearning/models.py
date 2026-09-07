@@ -12,6 +12,7 @@ class Subject(models.Model):
 
     class Meta:
         ordering = ["title"]
+        app_label = "Subect"
 
     def __str__(self):
         return self.title
@@ -39,6 +40,7 @@ class Course(models.Model):
     )
     class Meta:
         ordering = ["-created"]
+        app_label = "Course"
 
     def __str__(self):
         return self.title
@@ -58,6 +60,7 @@ class Module(models.Model):
 
     class Meta:
         ordering = ["order"]
+        app_label = "Module"
 
 
 class Content(models.Model):
@@ -80,6 +83,7 @@ class Content(models.Model):
 
     class Meta:
         ordering = ["order"]
+        app_label = "Content"
 
 class ItemBase(models.Model):
     owner = models.ForeignKey(
@@ -93,6 +97,7 @@ class ItemBase(models.Model):
 
     class Meta:
         abstract = True
+        app_label = "Itembase"
 
     def __str__(self):
         return self.title
@@ -106,12 +111,20 @@ class ItemBase(models.Model):
 
 class Text(ItemBase):
     content = models.TextField()
+    class Meta:
+        app_label = "Text"
 
 class File(ItemBase):
     file = models.FileField(upload_to="elearning/files")
+    class Meta:
+        app_label = "file"
 
 class Image(ItemBase):
     file = models.FileField(upload_to="elerning/images")
+    class Meta:
+        app_label = "Image"
 
 class Video(ItemBase):
     url = models.URLField()
+    class Meta:
+        app_label = "Video"

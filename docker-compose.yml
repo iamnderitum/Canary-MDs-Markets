@@ -17,7 +17,7 @@ services:
 
     depends_on:
       - db
-      - cache
+      # - cache
 
   db:
     image: postgres:latest
@@ -30,11 +30,11 @@ services:
       - POSTGRES_USER=canary
       - POSTGRES_PASSWORD=canary
 
-  cache:
-    image: redis:latest
-    restart: always
-    volumes:
-      - ./data/cache:/data
+  # cache:
+  #   image: redis:latest
+  #   restart: always
+  #   volumes:
+  #     - ./data/cache:/data
   web:
     build: .
     command: ["./wait-for-it.sh", "db:5432", "--",
@@ -57,15 +57,15 @@ services:
 
     depends_on:
       - db
-      - cache
+      # - cache
 
-  nginx:
-    image: nginx:latest
-    restart: always
-    volumes:
-      - ./config/nginx:/etc/nginx/templates
-      - .:/code
+  # nginx:
+  #   image: nginx:latest
+  #   restart: always
+  #   volumes:
+  #     - ./config/nginx:/etc/nginx/templates
+  #     - .:/code
 
-    ports:
-      - "80:80"
-      - "443:443"
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
