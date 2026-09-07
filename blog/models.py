@@ -42,7 +42,7 @@ class Post(models.Model):
     tags = TaggableManager()
 
     class Meta:
-        app_label = "Post"
+        # app_label = "Post"
         ordering = ["-publish"]
         indexes = [
             models.Index(fields=["-publish"]),

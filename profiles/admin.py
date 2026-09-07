@@ -5,7 +5,7 @@ from .models import Profile
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    model = Profile
+    #model = Profile
     list_display = [
         "user",
         "profile_image",

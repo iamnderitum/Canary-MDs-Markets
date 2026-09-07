@@ -65,7 +65,7 @@ class Profile(models.Model):
         ordering = ["created",]
         verbose_name = "Profile"
         verbose_name_plural = "Profiles"
-        app_label = "Profile"
+        #app_label = "Profile"
 
     def __str__(self):
         #  return f"Profile for {self.user.username}" # self.user.username
