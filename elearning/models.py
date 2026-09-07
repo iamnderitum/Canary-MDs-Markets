@@ -12,7 +12,7 @@ class Subject(models.Model):
 
     class Meta:
         ordering = ["title"]
-        # app_label = "Subect"
+        # app_label = "subject"
 
     def __str__(self):
         return self.title
