@@ -50,6 +50,10 @@ urlpatterns = [
     path("payment/", include("payment.urls", namespace="payment")),
     path("coupons/", include("coupons.urls", namespace="coupon")),
 
+    # Elearning Courses urls
+    path("course/", include("elearning.urls", namespace="courses")),
+    path("chat/", include("chat.urls", namespace="chat")),
+
     # Blog urls
     path("blog/", include("blog.urls", namespace="blog")),
     path(
@@ -59,9 +63,7 @@ urlpatterns = [
         name="django.contrib.sitemaps.views.sitemap"
     ),
 
-    # Elearning Courses urls
-    path("course/", include("elearning.urls")),
-    path("chat/", include("chat.urls", namespace="chat"))
+
 
 
 ]

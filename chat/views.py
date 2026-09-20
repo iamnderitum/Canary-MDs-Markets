@@ -13,7 +13,14 @@ def course_chat_room(request, course_id):
     except Course.DoesNotExist:
         # User is not a student of the course or does not exist
         return HttpResponseForbidden()
+
+    # retrieve chat history
+    latest_messages = course.chat_messages.select_related(
+        "user"
+    ).order_by("-id")[:5]
+    latest_messages = reversed(latest_messages)
     context = {
         "course":course,
+        "latest_messages": latest_messages,
     }
     return render(request, "chat/room.html", context)
