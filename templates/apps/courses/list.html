@@ -1,0 +1,135 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block head_title%}
+<title>Contents Page | CanaryMDs</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    {% if subject %}
+                        <h4 class="mb-0"> {{subject.title}} courses </h4>
+
+                    {% else %}
+                        All Courses
+                    {% endif %}
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Utility</a></li>
+                            <li class="breadcrumb-item active">Contents Page</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+          
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Media Objec subectt</h4>
+                        <p class="card-title-desc">The images or other media can be
+                            aligned top, middle, or bottom. The default is top aligned.
+                        </p>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="d-flex align-items-center">
+
+                            <div class="flex-shrink-0 me-3 col-sm-4" style="background-color: chartreuse;">
+                                <div class="contents">
+                                    <h3>Subjects</h3>
+                                    <ul id="modules">
+                                        <li {% if not subject %} class="selected" {% endif %}> 
+                                            <a href="{% url "courses:course_list_subject"  %}"> All </a>
+                                        </li>
+                                        {% for s in subjects %}
+                                            <li  {% if subject == s %} class="selected"{% endif %}>
+                                                <a href="{% url "courses:course_list_subject" s.slug %}>
+                                                    {{ s.title }}
+                                                    <br>
+                                                    <span>
+                                                        {{ s.total_courses }} course{{ s.total_courses|pluralize}}
+                                                    </span>
+                                                    
+                                                </a>
+
+                                            </li>
+                                       
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <div class="flex-grow-1 col-sm-8">
+                               
+                                <div id="module-contents">
+                                    {% for course in courses %}
+                                       
+                                            {% with subject=course.subject %}
+                                                <p class="mb-0"> {{ item }} </p>
+                                                <h3>
+                                                    <a href="{% url "courses:course_detail" course.slug %}">
+                                                        {{ course.title }}
+                                                    </a>
+
+                                                </h3>
+                                                <p>
+                                                    <a href="{% url "courses:course_list_subject" subject.slug %}">
+                                                        {{ subject }}
+                                                    </a>
+                                                     {{ course.total_modules }} modules.
+                                                     Instructor: {{ course.owner.username }}
+                                                </p>
+                                                
+                                               
+                                            {% endwith %}
+
+                                      
+                                   
+                                    {% endfor %}
+                                </div>
+                               
+                            </div>
+                        </div>
+
+
+
+
+                    </div><!-- end card-body -->
+                </div><!-- end card -->
+            </div><!-- end col -->
+        </div><!-- end row -->
+       
+
+    </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5sortable/0.13.3/
+html5sortable.min.js"></script>
+{% endblock %}
+{% block domready %}
+    var options = {
+        method: "POST",
+        mode: 'same-origin'
+    }
+    const moduleOrderUrl = '{% url "courses:module_order" %}';
+
+    sortable('#modules',{
+        forcePlaceholderSize: True,
+        placeholderClass: 'placeholder'
+    });
+{% endblock %}

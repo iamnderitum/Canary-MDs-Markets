@@ -42,10 +42,12 @@ class Post(models.Model):
     tags = TaggableManager()
 
     class Meta:
+        # app_label = "Post"
         ordering = ["-publish"]
         indexes = [
             models.Index(fields=["-publish"]),
         ]
+
 
     def __str__(self):
         return self.title

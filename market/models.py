@@ -20,6 +20,7 @@ class CurrencyPair(models.Model):
 
     class Meta:
         ordering = ["name"]
+        # app_label = "CurrencyPair"
 
     def __str__(self):
         return self.display_name
@@ -55,6 +56,7 @@ class Candle(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        # app_label = "Candle"
         ordering = ["timestamp"]
         indexes = [
             models.Index(fields=["pair", "timestamp"]),

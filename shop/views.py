@@ -1,6 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.contrib.postgres.search import (
+    SearchVector,
+    SearchQuery,
+    SearchRank,
+)
 from .models import Category, Product
 from cart.forms import CartAddProductForm
 from .recommender import Recommender
@@ -28,6 +32,50 @@ def product_list(request, category_slug=None):
     except EmptyPage:
         products = paginatior.page(paginatior.num_pages)
 
+    # Search advanced using PostgreSQL
+    query = request.GET.get("q", "").strip()
+    if query:
+        search_vector = (
+            SearchVector(
+                "name",
+                weight="A",
+                config="english"
+            )
+            +
+            SearchVector(
+                "description",
+                weight="B",
+                config="engilish"
+            )
+            +
+            SearchVector(
+                "category__name",
+                weight="C",
+                config="english"
+            )
+        )
+
+        search_query = SearchQuery(
+            query,
+            config="english",
+            search_type="websearch"
+        )
+        products = (
+            products
+            .annotate(
+                rank=SearchRank(
+                    search_vector,
+                    search_query
+                )
+            )
+            .filter(
+                rank__gt=0
+            )
+            .order_by(
+                "-rank"
+            )
+        )
+
     return render(
         request,
         "apps/ecommerce/ecommerce-products.html",
@@ -36,6 +84,7 @@ def product_list(request, category_slug=None):
             "categories": categories,
             "products": products,
             "page": products,
+            "query":query,
         }
     )
 

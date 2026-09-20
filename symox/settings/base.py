@@ -25,7 +25,7 @@ MESSAGE_TAGS = {
 }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,12 +37,13 @@ SECRET_KEY = 'django-insecure-a(zkmbhi9&4(fkv3byc&vo7_906uq*22j=9(eqyuv2d&s8z0nd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*",]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,6 +64,11 @@ INSTALLED_APPS = [
 
     "taggit",
 
+    "redisboard",
+    # "accounts",
+    "profiles",
+    "chat.apps.ChatConfig",
+
     'apps',
     'bootstrap',
     'components',
@@ -76,19 +82,34 @@ INSTALLED_APPS = [
     "blog",
 
     "market",
+
+    "elearning",
+    "cms",
+    #"chat",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    #'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
+    #'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "allauth.account.middleware.AccountMiddleware",
 ]
+CACHE_MIDDLEWARE_ALIAS = "default"
+CACHE_MIDDLEWARE_SECONDS = 60 * 15 # 15 Minutes
+CACHE_MIDDLEWARE_KEY_PREFIX = "symox"
 
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+    }
+}
 ROOT_URLCONF = 'symox.urls'
 
 TEMPLATES = [
@@ -109,6 +130,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'symox.wsgi.application'
 
+ASGI_APPLICATION = "symox.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -161,8 +183,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+#STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'assets'
+
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -249,3 +272,12 @@ REDIS_DB = config("REDIS_DB")
 # OANDA
 OANDA_API_KEY = config("OANDA_API_KEY")
 OANDA_ACCOUNT_ID = config("OANDA_ACCOUNT_ID")
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}

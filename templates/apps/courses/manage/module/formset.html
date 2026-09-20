@@ -1,0 +1,136 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block head_title%}
+        <title>Edit "{{ course.title }}" | CanaryMDs - Admin</title>
+{% endblock %}
+{% block extra_css %}
+    <!-- choices css -->
+    <link href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- dropzone css -->
+    <link href="{% static 'libs/dropzone/dropzone.css' %}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">Edit "{{ course.title }}" </h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Course Modules</a></li>
+                            <li class="breadcrumb-item active"> moduleees? </li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="addproduct-accordion" class="custom-accordion">
+
+                    <div class="card">
+                        {% if object %}
+                            <a href="#addproduct-productinfo-collapse" class="text-dark" data-bs-toggle="collapse" aria-expanded="true" aria-controls="addproduct-productinfo-collapse">
+                                <div class="p-4">
+                                    
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0 me-3">
+                                            <div class="avatar-sm">
+                                                <div class="avatar-title rounded-circle bg-primary-subtle text-primary">
+                                                    01
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <h5 class="font-size-16 mb-1">Edit Course</h5>
+                                            <p class="text-muted text-truncate mb-0">"{{ object.title }}"</p>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <i class="mdi mdi-chevron-up accor-down-icon font-size-24"></i>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </a>
+                        {% else %}
+                                <a href="#addproduct-productinfo-collapse" class="text-dark" data-bs-toggle="collapse" aria-expanded="true" aria-controls="addproduct-productinfo-collapse">
+                                <div class="p-4">
+                                    
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0 me-3">
+                                            <div class="avatar-sm">
+                                                <div class="avatar-title rounded-circle bg-primary-subtle text-primary">
+                                                    01
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <h5 class="font-size-16 mb-1">New Course</h5>
+                                            <p class="text-muted text-truncate mb-0">Create New Course</p>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <i class="mdi mdi-chevron-up accor-down-icon font-size-24"></i>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </a>
+                        {% endif %}
+
+                         <h1>
+                            {% if object %}
+                            Edit course "{{ object.title }}"
+                            {% else %}
+                            Create a new course
+                            {% endif %}
+                        </h1>
+
+                        <div id="addproduct-productinfo-collapse" class="collapse show" data-bs-parent="#addproduct-accordion">
+                            <div class="p-4 border-top">
+                                <form action="" method="POST">
+                                    {{ formset }}
+                                    {{ formset.management_form }}
+                                    {% csrf_token %}
+
+                                    <div class="mb-3">
+                                        <input  type="submit" value="Save modules" class="form-control">
+                                    </div>
+                                   
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    
+        
+
+    </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->
+{% endblock %}
+{% block extra_javascript %}
+
+        <!-- choices js -->
+        <script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+
+        <!-- dropzone plugin -->
+        <script src="{% static 'libs/dropzone/dropzone.js' %}"></script>
+
+         <!-- init js -->
+         <script src="{% static 'js/pages/ecommerce-choices.init.js' %}"></script>
+{% endblock extra_javascript %}
+

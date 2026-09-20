@@ -14,9 +14,11 @@ from django.urls import reverse_lazy
 from .views import MyPasswordChangeView ,MyPasswordSetView
 
 from blog.sitemaps import PostSitemap
+from shop.sitemaps import ProductSitemap
 
 sitemaps = {
-    "posts": PostSitemap
+    "posts": PostSitemap,
+    "products":ProductSitemap,
 }
 
 
@@ -40,12 +42,19 @@ urlpatterns = [
     path('accounts/password/change/', login_required(MyPasswordChangeView.as_view()), name="account_change_password"),
     path('accounts/password/set/', login_required(MyPasswordSetView.as_view()), name="account_set_password"),
 
+    # Shop urls
+    path("profile/", include("profiles.urls")),
     path("shop/", include("shop.urls", namespace="shop")),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
     path("payment/", include("payment.urls", namespace="payment")),
     path("coupons/", include("coupons.urls", namespace="coupon")),
-    
+
+    # Elearning Courses urls
+    path("course/", include("elearning.urls", namespace="courses")),
+    path("chat/", include("chat.urls", namespace="chat")),
+
+    # Blog urls
     path("blog/", include("blog.urls", namespace="blog")),
     path(
         "sitemap.xml",
@@ -54,9 +63,13 @@ urlpatterns = [
         name="django.contrib.sitemaps.views.sitemap"
     ),
 
+
+
+
 ]
 
 if settings.DEBUG:
     urlpatterns += static(
-        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
     )

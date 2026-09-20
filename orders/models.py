@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from coupons.models import Coupon
+from shop.models import Product
 
 
 class Order(models.Model):
@@ -73,7 +74,7 @@ class OrderItem(models.Model):
         on_delete=models.CASCADE
         )
     product = models.ForeignKey(
-        'shop.Product',
+        Product,
         related_name='order_items',
         on_delete=models.CASCADE
     )

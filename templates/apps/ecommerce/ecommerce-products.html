@@ -9,6 +9,7 @@
 
 <!-- nouisliderribute css -->
 <link rel="stylesheet" href="{% static 'libs/nouislider/dist/nouislider.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/app.css' %}">
 
 {% endblock extra_css %}
 {% block content %}
@@ -19,7 +20,9 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0">Shop</h4>
+                    <h4 class="mb-0">
+                        
+                    </h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
@@ -44,29 +47,25 @@
                         <h5 class="font-size-14 mb-3">Categories</h5>
                         <div class="custom-accordion">
 
-                            <ul class="list-unstyled categories-list mb-0">
+                            <ul class="list-unstyled categories-list ">
                                 <li {% if not category %} class="selected" {% endif %}>
-                                    <a href="{% url 'shop:product_list' %}" class="text-body"><i class="mdi mdi-circle-medium me-1"></i> All</a>
+                                    <a href="{% url 'shop:product_list' %}" class="text-body">
+                                        <!-- <i class="mdi mdi-circle-medium me-1"></i> -->
+                                        All
+                                    </a>
                                 </li>
 
                                 {% for c in categories %}
                                 <li {% if category.slug == c.slug %} class="selected" 
                                 {% endif %}>
-                                    <a href="{{ c.get_absolute_url }}" class="text-body"><i class="mdi mdi-circle-medium me-1"></i> {{ c.name }}</a>
+                                    <a href="{{ c.get_absolute_url }}" class="text-body">
+                                        <!-- <i class="mdi mdi-circle-medium me-1"></i> -->
+                                        {{ c.name }}
+                                    </a>
                                 </li>
                                 {% endfor %}
                            </ul>
-                            <!-- <div class="collapse show" id="categories-collapse">
-                                <div class="card p-2 border shadow-none">
-                                    <ul class="list-unstyled categories-list mb-0">
-                                        <li><a href="#" class="text-body"><i class="mdi mdi-circle-medium me-1"></i> Formal Shoes</a></li>
-                                        <li class="active"><a href="#" class="text-body"><i class="mdi mdi-circle-medium me-1"></i> Sports Shoes</a></li>
-                                        <li><a href="#" class="text-body"><i class="mdi mdi-circle-medium me-1"></i> casual Shoes</a></li>
-                                        <li><a href="#" class="text-body"><i class="mdi mdi-circle-medium me-1"></i> Sandals</a></li>
-                                        <li><a href="#" class="text-body"><i class="mdi mdi-circle-medium me-1"></i> Slippers</a></li>
-                                    </ul>
-                                </div>
-                            </div> -->
+                           
                         </div>
                         
                     </div>
@@ -226,7 +225,7 @@
                     <div class="card-body">
                         <div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div>
                                         <h5>Showing result for "Shoes"</h5>
                                         <ol class="breadcrumb p-0 bg-transparent mb-2">
@@ -234,16 +233,25 @@
                                             <li class="breadcrumb-item active">Shoes</li>
                                         </ol>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-md-6">
+                                <div class="row mt-3">
                                     <div class="form-inline float-md-end">
-                                        <div class="search-box ms-2">
-                                            <div class="position-relative">
-                                                <input type="text" class="form-control bg-light border-light rounded" placeholder="Search...">
-                                                <i class="bx bx-search search-icon"></i>
+                                        <form method="GET" action="{% url 'shop:product_list' %}">
+                                            <div class="search-box ms-2">
+                                                <div class="position-relative">
+                                                    <input
+                                                        type="search"
+                                                        name="q"
+                                                        value="{{ query }}"
+                                                        class="form-control bg-light border-light rounded"
+                                                        placeholder="Search..."
+                                                        autocomplete="off"
+                                                    >
+                                                    <i class="bx bx-search search-icon"></i>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -315,6 +323,18 @@
                                                         </div>
                                                         
                                                     </div>
+                                                </div>
+                                            </div>
+
+                                            {% empty %}
+                                            <div class="col-12">
+                                                <div class="alert alert-warning">
+                                                    {% if query %}
+                                                        No Products found for
+                                                        "<strong> {{query}} </strong>"
+                                                    {% else %}
+                                                        No products available
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                             {% endfor %}

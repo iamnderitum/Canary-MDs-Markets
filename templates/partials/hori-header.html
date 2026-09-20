@@ -5,23 +5,31 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
+
                 <a href="{% url 'dashboard' %}" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{% static 'images/logo-canary.png' %}" alt="" height="25">
+                        <img src="{% static 'images/Canary-Logo-2.png' %}" 
+                            alt="" height="75">
                     </span>
                     <span class="logo-lg">
-                        <img src="{% static 'images/logo-canary.png' %}" alt="" height="25"> <span class="logo-txt">Canary MDs</span>
+                        <img src="{% static 'images/Canary-Logo-2.png' %}" 
+                            alt="" height="75"> <span class="logo-txt">Canary MDs</span>
                     </span>
                 </a>
 
                 <a href="{% url 'dashboard' %}" class="logo logo-light">
+
                     <span class="logo-sm">
-                        <img src="{% static 'images/logo-canary.png' %}" alt="" height="25">
+                        <img src="{% static 'images/Canary-Logo-2.png' %}" 
+                            alt="" height="75">
                     </span>
+
                     <span class="logo-lg">
-                        <img src="{% static 'images/logo-canary.png' %}" alt="" height="25"> <span class="logo-txt">Canary Mds</span>
+                        <img src="{% static 'images/Canary-Logo-2.png' %}" 
+                            alt="" height="75"> <span class="logo-txt">Canary Mds</span>
                     </span>
                 </a>
+
             </div>
 
             <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
@@ -440,12 +448,23 @@
                 <button type="button" class="btn header-item user text-start d-flex align-items-center" id="page-header-user-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="d-none d-xl-inline-block ms-1 fw-medium">{{user.username}}</span>
-                    <img class="rounded-circle header-profile-user" src="{% static 'images/users/avatar-1.jpg' %}"
-                    alt="Header Avatar">
+                    {% if request.user.profile.image %}
+                        <img
+                            class="rounded-circle header-profile-user"
+                            src="{{ request.user.profile.image.url }}"
+                            alt="{{ request.user.username }}"
+                        >
+                    {% else %}
+                        <img
+                            src="{% static 'images/users/avatar-1.jpg' %}"
+                            alt="Default Profile"
+                            class="avatar-lg rounded-circle img-thumbnail"
+                        >
+                    {% endif %}
                     
                 </button>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
-                    <a class="dropdown-item" href="{% url 'apps:contacts.userprofile' %}"><i class='bx bx-user-circle text-muted font-size-18 align-middle me-1'></i> <span class="align-middle">My Account</span></a>
+                    <a class="dropdown-item" href="{% url 'profiles:profile' %}"><i class='bx bx-user-circle text-muted font-size-18 align-middle me-1'></i> <span class="align-middle">My Account</span></a>
                     <a class="dropdown-item" href="{% url 'apps:chat' %}"><i class='bx bx-chat text-muted font-size-18 align-middle me-1'></i> <span class="align-middle">Chat</span></a>
                     <a class="dropdown-item" href="{% url 'pages:utility.faqs' %}"><i class='bx bx-buoy text-muted font-size-18 align-middle me-1'></i> <span class="align-middle">Support</span></a>
                     <div class="dropdown-divider"></div>

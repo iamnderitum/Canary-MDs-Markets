@@ -1,0 +1,55 @@
+I have a site with a logo... Below is the html source code:
+
+  <div class="navbar-brand-box">
+                <a href="{% url 'dashboard' %}" class="logo logo-dark">
+                    <span class="logo-sm">
+                        <img src="{% static 'images/Canary-Logo-2.png' %}" alt="" height="25">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="{% static 'images/Canary-Logo-2.png' %}" alt="" height="25"> <span class="logo-txt">Canary MDs</span>
+                    </span>
+                </a>
+
+                <a href="{% url 'dashboard' %}" class="logo logo-light">
+                    <span class="logo-sm">
+                        <img src="{% static 'images/Canary-Logo-2.png' %}" alt="" height="25">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="{% static 'images/Canary-Logo-2.png' %}" alt="" height="25"> <span class="logo-txt">Canary Mds</span>
+                    </span>
+                </a>
+            </div>
+
+The css is as below:
+.navbar-brand-box {
+  padding: 0 1.5rem;
+  width: 255px;
+  position: fixed;
+  z-index: 1;
+  background-color: #ffffff;
+}
+
+.logo {
+  line-height: 120px;
+}
+.logo .logo-sm {
+  display: none;
+}
+
+.logo-dark {
+  display: block;
+}
+
+.logo-light {
+  display: none;
+}
+
+.logo-txt {
+  font-weight: 700;
+  font-size: 20px;
+  vertical-align: text-bottom;
+  margin-left: 5px;
+  line-height: 1;
+  color: #030f16 !important;
+}
+I want to make the logo a bit larger with inline css. How can I accomplish that?

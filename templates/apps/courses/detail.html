@@ -1,0 +1,78 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block head_title%}
+<title>Contents Page | CanaryMDs</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">Course Detail </h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Utility</a></li>
+                            <li class="breadcrumb-item active">Contents Page</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <h5 class="card-header bg-transparent border-bottom text-uppercase">Featured</h5>
+                    <div class="card-body">
+                        {% with subject=object.subject %}
+                        <h1 class="card-title">{{object.title}} </h1>
+
+                        <div class="module">
+                            <h2>Overview</h2>
+                            <p class="card-text">
+                                <a href="{% url "courses:course_list_subject" subject.slug %}">
+                                    {{ subject.title }} 
+                                </a>
+                                {{ object.modules.count }} modules.
+                                Instructor: {{ object.owner.username }}
+                            </p>
+                            {{ object.overview|linebreaks }}
+                        </div>
+                        {% endwith %}
+
+                        {% if request.user.is_authenticated %}
+                            <form action="{% url "profiles:student_enroll_course" %}" method="post">
+                                {{ enroll_form }}
+                                {% csrf_token %}
+                                <input type="submit" value="Enroll Now" class="btn btn-primary">
+                            </form>
+                        {% else %}
+
+                            <a href="{% url "dashboard" %}" class="btn btn-primary">Register to enrol</a>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+            </div><!-- end col -->
+
+           
+        </div>
+
+
+    </div><!-- end row -->
+
+
+</div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->
+{% endblock %}
